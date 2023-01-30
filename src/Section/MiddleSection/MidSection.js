@@ -36,6 +36,11 @@ export default function MidSection() {
     navigate('/otherprofile')
   }
  
+  function handleThread(e) {
+    console.log(e , "i am thred post to be set on recoil form mid sec")
+    setThreadData(e)
+    navigate('/status')
+  }
 
   return (
     <>
@@ -62,14 +67,14 @@ export default function MidSection() {
               src={element.tweets[0].tweetPic}
               alt="profilePic"
             />
-            <div className={style.postSubContainer}>
+            <div  className={style.postSubContainer}>
               <div>
                 <span className={style.postUserName}>{element.name}</span>
                 <span className={style.postHandleName}>
                   {element.handlerName}
                 </span>
-              </div>
-              <div>
+            
+              <div onClick={()=>handleThread(element)}>
               <span>{element.tweets[0].tweetText}</span>
               <img
                 className={style.tweetPic}
@@ -77,6 +82,7 @@ export default function MidSection() {
                 alt="tweetPic"
                 width="450rem"
               />
+              </div>
               <span className={style.iconsWrapper}>
               <span className={style.subIconsWrapper}>
                 <BiMessageRounded className={style.icons} />

@@ -5,6 +5,7 @@ import LoginPage from "../Pages/LoginPage/LoginPage";
 import OtherProfilePage from "../Pages/OtherProfilePage/OtherProfilePage";
 import ProfilePage from "../Pages/ProfilePage/ProfilePage";
 import SignUpPage from "../Pages/SignUpPage/SignUpPage";
+import ThreadPage from "../Pages/ThreadPage/ThreadPage";
 export default function Routing() {
   return (
     <Routes>
@@ -14,6 +15,9 @@ export default function Routing() {
       <Route path="/home" element={<Home />} />
       <Route path="/profile" element={<ProfilePage/>} />
       <Route path="/otherprofile" element={<OtherProfilePage />} />
+      
+       <Route path="/status" element={<ThreadPage />} />
+      
     </Routes>
   );
 }
