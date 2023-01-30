@@ -1,0 +1,32 @@
+.button{
+    background-color: white;
+    border-color: white;
+    border-radius: 5rem;
+    width: 18rem;
+    margin-left: -3.5rem;
+    cursor: pointer;
+    height: 3.5rem;  
+    padding: 0.5rem; 
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+.button:hover{
+    background-color:  rgba(41, 41, 44, 0.2); ;
+}
+
+.wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:  2rem;
+    
+}
+.icon{
+    font-size: 3rem;
+}
+.content{
+    padding: 0.4rem 2rem;
+    cursor: pointer;
+    width: 15rem;
+}
