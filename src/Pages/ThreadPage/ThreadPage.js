@@ -5,18 +5,22 @@ import { CgCalendarDates } from "react-icons/cg";
 import LeftSection from "../../Section/LeftSection/LeftSection";
 import RightSection from "../../Section/RightSection/RightSection";
 import { useNavigate } from "react-router-dom";
-import {Thread} from '../../RecoilState/Thread/Thread'
+import {Thread, ThreadofMinePOst} from '../../RecoilState/Thread/Thread'
 import { useRecoilValue } from "recoil";
 import { BiMessageRounded } from "react-icons/bi";
 import { CgPoll } from "react-icons/cg";
 import { FaRetweet } from "react-icons/fa";
 import { BsUpload } from "react-icons/bs";
+import { RxAvatar } from "react-icons/rx";
 import LikeButton from "../../Atom/LikeButton/LikeButton";
+import CommentBox from "../../Atom/CommentBox/CommentBox";
 
 
 export default function ThreadPage() {
 let naviagte = useNavigate()
  const threadReadDetails = useRecoilValue(Thread)
+ const threadOfLogUser = useRecoilValue(ThreadofMinePOst) // mine log uswer detail post
+ console.log(threadReadDetails , "I am from thread")
 
  function handleArrow() {
     naviagte('/home')
@@ -34,19 +38,22 @@ let naviagte = useNavigate()
         <span  onClick={handleArrow} className={style.arrow}>
           <BsArrowLeft  />
           </span>
-          <h3>Thread</h3>
+          <h3>Tweet</h3>
         </div>
 {
     //this is modification of user side post woith css
 }
+  { threadReadDetails ? 
         <div>
         <div className={style.postContainer} key={threadReadDetails.name}>
        
+      
      <img
        className={style.userProfle}
        src={threadReadDetails.tweets[0].tweetPic}
        alt="profilePic"
      />
+    
      
     
        <div>
@@ -98,10 +105,70 @@ let naviagte = useNavigate()
        </div>
      
     
-        </div>
+        </div> : ""
+       }
+
+       
+      <CommentBox/>
+
+      {
+        //comments
+      }
+  
       
+  <div >
+     {threadReadDetails.tweets[0].TweetReplies.map(x=>
+       <>
+       <div className={style.commentMain}>
+        <h4><img src="https://tse2.mm.bing.net/th?id=OIP.1yoSL-WO0YU5mQKROudvswHaHa&pid=Api&P=0"  alt= "comment profile" className={style.avatar}/></h4>
+        <div className={style.commenSubMain}>
+
+        <div className={style.commentNameHandleNAme}>
+        <span className={style.commenSubName}>{x.name}</span>
+        <span className={style.commenSubName}>{x.handlerName}</span>
+
+        </div>
+
+        <p className={style.tweetCommentText}>{x.tweetReplyText}</p>
+        <span className={style.iconsCommentWrapper}>
+        <span className={style.subIconsWrapper}>
+          <BiMessageRounded className={style.icons} />
+          <span className={style.iconText}>
+          {threadReadDetails.tweets[0].tweetCount}
+          </span>
+          </span>
+          <span  className={style.subIconsWrapper}>
+          <FaRetweet className={style.icons} />
+          <span className={style.iconText}>
+          {threadReadDetails.tweets[0].retweetCount}
+          </span>
+          </span>
+          <span  className={style.subIconsWrapper}>
+          <LikeButton />
+          <span className={style.iconText}>
+          {threadReadDetails.tweets[0].likesCount}
+          </span>
+          </span>
+          <span  className={style.subIconsWrapper}>
+          <CgPoll className={style.icons} />
+          <span className={style.iconText}>
+          {threadReadDetails.tweets[0].viewsCount}
+          </span>
+          </span>
+          <BsUpload className={style.icons} />
+        </span>
+        </div>
+        </div>
+        </>
+        )}
+      </div>
+ 
+
       </div>
 
+{
+    //right section
+}
         <div style={{ border: "0px solid" }}>
           <RightSection />
         </div>

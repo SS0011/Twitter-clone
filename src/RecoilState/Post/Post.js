@@ -4,6 +4,7 @@ export const Post = atom({
     key : "Post" ,
     default :  [
         {
+            id : 1,
             name  : 'The White House',
             handlerName : '@The White House' ,
             organization : 'United States government organization',
@@ -34,6 +35,7 @@ export const Post = atom({
             ]
         },
         {
+            id:2,
             name : 'Mukund',
             handlerName : '@kumarmukund',
             organization : '',
@@ -66,6 +68,7 @@ export const Post = atom({
             ]
         },
         {
+            id : 3,
             name : 'Usain St. Leo Bolt',
             handlerName : '@usainbolt',
             organization : '',
@@ -97,6 +100,7 @@ export const Post = atom({
             ]  
         },
         {
+            id : 4,
             name : 'Andrew Elliott',
             handlerName : '@andrewje_home',
             organization : '',
@@ -128,6 +132,7 @@ export const Post = atom({
             ]  
         },
         {
+            id: 5,
             name : 'RVCJ Media',
             handlerName : '@RVCJ_FB',
             organization : '',

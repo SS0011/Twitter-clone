@@ -96,6 +96,14 @@ export default function SignUp() {
   }
 
   function handleSubmit() {
+
+    console.log(allUserDetails , "i am local storage all user data coming on clicking submit button")
+    const alreadyRegister = allUserDetails.find(x=> x.Email === email && x.Phone === phone)
+console.log(alreadyRegister, "i am finded data which is already in local storage")
+    if(alreadyRegister){
+      alert(`${alreadyRegister.Name} you are already Register You can go to login Page`)
+      navigate('/login')
+    }else{
     if ((email === "" && phone === "") || password === "" || name === "") {
       alert("Please fill the input box");
     } else if ((emailError && phoneError) || nameError || passwordError) {
@@ -116,8 +124,10 @@ export default function SignUp() {
       alert(`${name} successfully registered`)
       setIsLogin(true)
       navigate('/home')
+      localStorage.setItem("matchedUser" , JSON.stringify(userData))
     }
   }
+}
   return (
     <div>
       <Dialog

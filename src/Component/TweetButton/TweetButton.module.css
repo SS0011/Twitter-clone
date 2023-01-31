@@ -97,6 +97,12 @@
 }
 .iconss{
     font-size: 1.2rem;
+    color: #008ac1;
+}
+
+.inputBoxImage{
+    margin-left: 5rem;
+    width: 30rem;
 }
 
 

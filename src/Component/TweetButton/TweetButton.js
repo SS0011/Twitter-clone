@@ -8,7 +8,7 @@ import TextArea from '../../Atom/TextArea/TextArea';
 import { MdOutlinePoll } from "react-icons/md";
 import { TfiLocationPin } from "react-icons/tfi";
 import { TbCalendarStats } from "react-icons/tb";
-import { GrGallery } from "react-icons/gr";
+import { TfiGallery } from "react-icons/tfi";
 import { AiOutlineFileGif } from "react-icons/ai";
 import { IoEarthSharp } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
@@ -19,6 +19,8 @@ export default function TweetButton() {
   const [open, setOpen] = useState(false);
   const [tweet , setTweet] = useState("")
   const [tweetPost,setTweetPost] = useRecoilState(UserPost)
+  const inputRef = React.useRef(null)
+  const [image, setImage] = useState(null);
   console.log(tweetPost , "i am from tweet box")
   
 
@@ -40,11 +42,24 @@ export default function TweetButton() {
   
   function handleTweetPost() {
     // alert("i am twet")
-    let tweetText =  {name : "Ashar",tweetText :tweet}
+    let tweetText =  {name : "Ashar",tweetText :tweet ,tweetPic : image}
     console.log([...tweetPost,tweetText])
     setTweetPost([tweetText,...tweetPost])
     setOpen(false)
+    setImage("")
+    setTweet("")
   }
+  function handleImage(){
+    // alert(" i am picked")
+    inputRef.current.click()
+  }
+
+  const onImageChange = (event) => {
+    if (event.target.files[0] ) {
+      console.log(event.target.files[0])
+      setImage(URL.createObjectURL(event.target.files[0]));
+    }
+   }
 
   return (
     <div>
@@ -73,11 +88,15 @@ export default function TweetButton() {
       </div>
 
       </div>
+      {image ? 
+        <img className={style.inputBoxImage} src={image} alt="uploadImage" width="40px" /> : ""
+        }
       <span className={style.evryOnebtnEartch}><IoEarthSharp />Everyone can reply</span>
 
         <div className={style.iconBtnWrapper}>
         <div className={style.iconBtn}> 
-        <GrGallery className={style.iconss}/>
+        <TfiGallery onClick={handleImage} className={style.iconss}/>
+        <input  hidden ref={inputRef}  type="file" onChange={onImageChange} className="filetype" />
         <AiOutlineFileGif className={style.iconss}/>
        <MdOutlinePoll className={style.iconss}/>
        <TbCalendarStats className={style.iconss}/>

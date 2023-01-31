@@ -5,6 +5,7 @@ import { CgCalendarDates } from "react-icons/cg";
 import LeftSection from "../../Section/LeftSection/LeftSection";
 import RightSection from "../../Section/RightSection/RightSection";
 import { useNavigate } from "react-router-dom";
+import UserSidePost from "../../Component/UserSidePost/UserSidePost";
 
 export default function ProfilePage() {
   let matchedUserDetails = JSON.parse(localStorage.getItem("matchedUser"));
@@ -60,6 +61,8 @@ export default function ProfilePage() {
           <h4>Media</h4>
           <h4>Likes</h4>
           </div>
+
+          <UserSidePost />
         </div>
 
         <div style={{ border: "0px solid" }}>

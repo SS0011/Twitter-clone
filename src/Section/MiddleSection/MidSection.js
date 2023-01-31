@@ -17,20 +17,30 @@ import { Thread } from "../../RecoilState/Thread/Thread";
 export default function MidSection() {
   const postData = useRecoilValue(Post);
   const [threadData ,setThreadData] = useRecoilState(Thread)
+  const [ likesCounting ,setLikesCounting] = useState(115)
   const navigate = useNavigate()
 //   const [TweetDetailsProfile , setTweetDetailsProfile] = useRecoilState(TweetProfileDetails)
   
-  const [likes ,setLikes]=useState(postData[0].tweets[0].likesCount)
-  function handleLike(element) {
-    console.log(element.tweets[0].likesCount, "i am liked element")
-    let likeVariable = element.tweets[0].likesCount
-    if(element.tweets[0].likesCount === likeVariable ){
-    setLikes(element.tweets[0].likesCount + 1)
-    }  
+//   const [likes ,setLikes]=useState('')
+
+  function handleLike(element, index) {
+    console.log(element, "i am liked element")
+    // let likeVariable = element.tweets[0].likesCount
+    // postData.map(elem => {
+    //     if(elem.)
+    // })
+   
+    // setLikes(like)
+    // if(element.id === postData[0].id){
+    // setLikes(element.tweets[0].likesCount + 1)
+    // }
+    if( likesCounting === 115) setLikesCounting(likesCounting + 1)
+   else setLikesCounting(115)
+   
   }
 
   function redirectToProfile(element) {
-    console.log(element)
+    console.log(element,"i ma like count friom")
     // setTweetDetailsProfile(element)
     localStorage.setItem("otherUserDetails",JSON.stringify(element))
     navigate('/otherprofile')
@@ -59,7 +69,7 @@ export default function MidSection() {
      
 
         
-        {postData.map((element) => (
+        {postData.map((element, index) => (
           <div className={style.postContainer} key={element.name}>
             <img
             onClick={()=>redirectToProfile(element)}
@@ -97,10 +107,11 @@ export default function MidSection() {
                 </span>
                 </span>
                 <span  className={style.subIconsWrapper}>
-                <span onClick={()=>handleLike(element)}><LikeButton /></span>
-                <span className={style.iconText}>
-                {likes}
-                </span>
+                <span onClick={()=>handleLike()}><LikeButton /></span>
+              {
+                //element.tweets[0].likesCount
+            }
+            {likesCounting}
                 </span>
                 <span  className={style.subIconsWrapper}>
                 <CgPoll className={style.icons} />

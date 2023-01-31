@@ -14,6 +14,7 @@ export default function Trends() {
       midText: "#BB K VINES",
       botText: "377k Tweets",
     },
+    
     {
       id: 2,
       inIntrseted: false,
@@ -21,6 +22,7 @@ export default function Trends() {
       midText: "#REACT",
       botText: "377k Tweets",
     },
+   
     {
       id: 3,
 
@@ -45,9 +47,11 @@ export default function Trends() {
       midText: "#BTS",
       botText: "377k Tweets",
     },
+    
   ];
 
-  const [list, setList] = useState(content);
+  const [list, setList] = useState(content.slice(0,2));
+  const [showMore,setShowMore ] = useState(false)
 
   function notInterested(element) {
     console.log(element);
@@ -67,6 +71,18 @@ export default function Trends() {
     console.log(index);
     list.splice(index, 1);
     setList([...list]);
+  }
+
+  function handleShowMoreItem() {
+    setList(content)
+    if(list.length === content.length){
+        setList(content.slice(0,2))
+    }
+    if(!showMore){
+        setShowMore(true)
+    }else{
+        setShowMore(false)
+    }
   }
 
   return (
@@ -97,7 +113,7 @@ export default function Trends() {
           </div>
         ))}
 
-        <h4 className={RightSecStyle.ShowMore}>Show more</h4>
+        <h4 onClick={handleShowMoreItem} className={RightSecStyle.ShowMore}>{showMore ? "Show Less" :"Show More" }</h4>
       </div>
     </>
   );

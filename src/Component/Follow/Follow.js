@@ -1,65 +1,139 @@
-import { style } from "@mui/system";
+import React from 'react'
 import { useState } from "react";
 import FollowButton from "../../Atom/FollowButton/FollowButton";
 import RightBotStyle from "./Follow.module.css";
-export default function Follow() {
-  const [show, setShow] = useState(true);
+
+
+export default function Trends() {
 
   const content = [
     {
-      image:
-        "https://pbs.twimg.com/profile_images/1565985672501927936/d-r-h241_400x400.jpg",
-      name: "Narendra Modi",
-      userName: "@narendramodi",
-      dots: "Follow",
-      dots3: "Following",
+      id: 1,
+
+      
+      upText: "Bhuvan Bam",
+      midText: "@bhuvan.bam22",
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7PCbXn-dXLt087I_3kjfqRGXmiL4ZrSvZ6k6KVjDmWU0fUf6TGuo63HM&s'
     },
     {
-      image:
-        "https://tse1.mm.bing.net/th?id=OIP.hKVyzWBE16aOIBDGI14fzwHaHa&pid=Api&P=0",
-      name: "Sachin Tendulkar",
-      userName: "@sachinTendulkar",
-      dots: "Follow",
-      dots3: "Following",
+      id: 2,
+      
+      upText: "Coder",
+      midText: "@coder001",
+      image: 'https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png'
+      
     },
     {
-      image:
-        "https://tse3.mm.bing.net/th?id=OIP.ScYp15kHnxHhSEsItsUc4wHaIT&pid=Api&P=0",
-      name: "Sharukh Khan",
-      userName: "@srk",
-      dots: "Follow",
-      dots3: "Following",
+      id: 3,
+
+      
+      upText: "AmovieLover",
+      midText: "@MovieLover:)",
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCZOWxoVA7hwKdzbhow0NpiSFpU4vcYbnIiQ&usqp=CAU'
+    },
+    {
+      id: 4,
+
+      
+      upText: "SachinLover",
+      midText: "@Mahi462",
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTp2I6_JdUrlQMasDC-GTPjU2WFra0_JVGfQ&usqp=CAU'
+    },
+    {
+      id: 5,
+
+      
+      upText: "BTSArmy",
+      midText: "@froeverBTS",
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl7qJNoIqj4Q37jJWX8k3bzzeAgf7BQyHmSA&usqp=CAU'
+    },
+    {
+      id: 6,
+
+      
+      upText: "Bhuvan Bam",
+      midText: "@bhuvan.bam22",
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7PCbXn-dXLt087I_3kjfqRGXmiL4ZrSvZ6k6KVjDmWU0fUf6TGuo63HM&s'
+    },
+    {
+      id: 7,
+      
+      upText: "Coder",
+      midText: "@coder001",
+      image: 'https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png'
+      
+    },
+    {
+      id: 8,
+
+      
+      upText: "AmovieLover",
+      midText: "@MovieLover:)",
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCZOWxoVA7hwKdzbhow0NpiSFpU4vcYbnIiQ&usqp=CAU'
+    },
+    {
+      id: 9,
+
+      
+      upText: "SachinLover",
+      midText: "@Mahi462",
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTp2I6_JdUrlQMasDC-GTPjU2WFra0_JVGfQ&usqp=CAU'
+    },
+    {
+      id:10,
+
+      
+      upText: "BTSArmy",
+      midText: "@froeverBTS",
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl7qJNoIqj4Q37jJWX8k3bzzeAgf7BQyHmSA&usqp=CAU'
     },
   ];
 
  
 
+  const [list , setList] = useState(content.slice(0,4));
+  const [showing ,setShowing] = useState(false)
+  
+function handleShowMore() {
+    setList(content)
+    if(list.length === content.length){
+        setList(content.slice(0,4))
+    }
+    if(showing){
+        setShowing(false)
+    }else{
+        setShowing(true)
+    }
+}
   return (
     <>
       <div className={RightBotStyle.box}>
-        <h3 style={{paddingLeft:"1rem"}}>Who To Follow </h3>
+        <h3 style={{paddingLeft:"1rem"}}>Who to follow </h3>
 
-        {content.map((element, index) => (
+        {list.map((element) => (
           <div className={RightBotStyle.contentmain}>
-            <div className={RightBotStyle.content}>
-              <img
-                style={{ paddingTop: "1.5em", borderRadius: "50%" }}
+             <img
+                style={{  borderRadius: "50%" }}
                 src={element.image}
-                width="60em"
-                height="60em"
-                alt="proppp"
+                width="60rem"
+                height="60rem"
+                alt="pp"
               />
+            <div className={RightBotStyle.content}>
+
+              <span className={RightBotStyle.upText}>{element.upText}</span>
+              <span className={RightBotStyle.content1}>{element.midText}</span>
+              
             </div>
-            <div>
-              <p>{element.name}</p>
-              <p>{element.userName}</p>
-            </div>
-            <div style={{ paddingTop: "1.5em" }}>
-              <FollowButton  className={RightBotStyle.followButton}/>
-            </div>
+           
+            <span className={RightBotStyle.poperParent}>
+             
+            <FollowButton  className={RightBotStyle.followButton}/>
+            </span>
           </div>
         ))}
-        <h4 className={RightBotStyle.ShowMore}>Show more</h4>
+
+        <h4 onClick={handleShowMore} className={RightBotStyle.ShowMore}>{showing ? "Show less" : "Show More "}</h4>
       </div>
     </>
   );

@@ -86,6 +86,9 @@ export default function OtherProfilePage() {
             {matchedUser.handlerName}
           </span>
         </div>
+        {
+            
+        }
         <span>{matchedUser.tweets[0].tweetText}</span>
 
           <img   className={Style.tweetPic}  width="450rem" src={ matchedUser.tweets[0].tweetPic } alt="pop" />

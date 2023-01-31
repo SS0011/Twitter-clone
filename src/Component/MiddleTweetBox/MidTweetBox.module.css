@@ -81,6 +81,7 @@
 }
 .iconss{
     font-size: 1.2rem;
+    color: #008ac1;
 }
 .showMore{
     display: flex;
@@ -99,6 +100,10 @@
     color: #008ac1;
     border: none;
     z-index: -1;
+}
+.inputBoxImage{
+    margin-left: 5rem;
+    width: 30rem;
 }
 
 }

@@ -1,6 +1,6 @@
 import { UserPost } from "../../RecoilState/UserPost/UserPost";
 import { RxAvatar } from "react-icons/rx";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import style from './UserSidePost.module.css'
 import { BiMessageRounded } from "react-icons/bi";
 import { CgPoll } from "react-icons/cg";
@@ -8,22 +8,33 @@ import { FaRetweet } from "react-icons/fa";
 import { BsUpload } from "react-icons/bs";
 import { BsFillHeartFill } from "react-icons/bs";
 import LikeButton from "../../Atom/LikeButton/LikeButton";
+import { useNavigate } from "react-router-dom";
+import { ThreadofMinePOst } from "../../RecoilState/Thread/Thread";
+
 export default function UserSidePost() {
     let matchedUserDetails = JSON.parse(localStorage.getItem("matchedUser"))
     const UserPostData = useRecoilValue(UserPost);
+    const navigate = useNavigate()
+    const [threadData ,setThreadData] = useRecoilState(ThreadofMinePOst)
+    function redirectToProfile() {
+        
+        navigate('/profile')
+      }
+     
     return(
         <>
         <div>
         {
             UserPostData.map(element=> 
                 <div className={style.postContainer} key={element.name}>
-               {element.tweetPic ? 
+                <span onClick={()=>redirectToProfile(element)}>
+              
             <img
               className={style.userProfle}
-              src={element.tweetPic}
+              src="https://tse1.mm.bing.net/th?id=OIP.Lui6lVdzvecYDAJ_ahUOawAAAA&pid=Api&P=0"
               alt="profilePic"
             />
-             : < RxAvatar  className={style.userProfle}/>  }
+            </span>
             <div className={style.postSubContainer}>
               <div>
                 <span className={style.postUserName}>{ matchedUserDetails.Name}</span>
