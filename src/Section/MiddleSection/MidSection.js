@@ -13,10 +13,12 @@ import LikeButton from "../../Atom/LikeButton/LikeButton";
 // import { TweetProfileDetails } from "../../RecoilState/TweetProfileDetails/TweetProfileDetails";
 import { useNavigate } from "react-router-dom";
 import { Thread } from "../../RecoilState/Thread/Thread";
+import { CommentReplyState} from "../../RecoilState/CommentReplyState/CommentReplyState";
 
 export default function MidSection() {
   const postData = useRecoilValue(Post);
   const [threadData ,setThreadData] = useRecoilState(Thread)
+  const [myReply , setMyReply ] = useRecoilState(CommentReplyState)
   const [ likesCounting ,setLikesCounting] = useState(115)
   const navigate = useNavigate()
 //   const [TweetDetailsProfile , setTweetDetailsProfile] = useRecoilState(TweetProfileDetails)
@@ -49,6 +51,7 @@ export default function MidSection() {
   function redirectToThreadOrTweetPage(e) {
     console.log(e , "i am thred post to be set on recoil form mid sec")
     setThreadData(e)
+    setMyReply(e.tweets[0].TweetReplies)
     navigate('/status')
   }
 

@@ -12,19 +12,20 @@ import { useState } from 'react';
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Thread } from '../../RecoilState/Thread/Thread';
 import { ThreadofMinePOst } from '../../RecoilState/Thread/Thread';
+import { CommentReplyState } from "../../RecoilState/CommentReplyState/CommentReplyState"
 
 export default function CommentBox({replyToName}) {
-
+const matchedUserData = JSON.parse(localStorage.getItem("matchedUser"))
   const threadUserName = useRecoilValue(Thread)
-
+  const [newReply ,setNewReply] = useRecoilState(CommentReplyState)
   console.log(threadUserName , " I am from thread box")
 
-    const [tweet, setTweet] = useState("");
+    const [tweetReply, setTweetRelpy] = useState("");
     const [show, setShow] = useState(false);
     //const [tweetPost,setTweetPost] = useRecoilState(UserPost)
 
     function handleTweet(e) {
-        setTweet(e.target.value);
+        setTweetRelpy(e.target.value);
         //console.log(e.target.value ,"i am from midtweetbox")
       }
       function handleShow() {
@@ -32,10 +33,13 @@ export default function CommentBox({replyToName}) {
       }
       function handleTweetPost() {
          alert("i am twet")
-        // let tweetText =  {name : "Ashar",tweetText :tweet}
-        // console.log([...tweetPost,tweetText])
-        // setTweetPost([tweetText,...tweetPost])
-        setTweet("")
+        const myReply = {
+          name : matchedUserData.Name,
+          handlerName :  matchedUserData.Name,
+          tweetReplyText : tweetReply
+         }
+     setNewReply([myReply,...newReply])
+        setTweetRelpy("")
       }
     return(
         <>
@@ -52,7 +56,7 @@ export default function CommentBox({replyToName}) {
           )}
           <TextArea
             placeholder="Tweet your reply"
-            value={tweet}
+            value={tweetReply}
             onChange={handleTweet}
             className={style.inputBox}
           />

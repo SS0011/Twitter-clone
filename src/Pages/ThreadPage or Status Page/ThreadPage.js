@@ -12,12 +12,12 @@ import { FaRetweet } from "react-icons/fa";
 import { BsUpload } from "react-icons/bs";
 import LikeButton from "../../Atom/LikeButton/LikeButton";
 import CommentBox from "../../Component/CommentBox/CommentBox";
-
+import { CommentReplyState} from "../../RecoilState/CommentReplyState/CommentReplyState";
 
 export default function ThreadPage() {
 let naviagte = useNavigate()
  const threadReadDetails = useRecoilValue(Thread)  //threadREaddetail is an object  /empty
-
+ const postComment = useRecoilValue(CommentReplyState)
  console.log(threadReadDetails , "I am from thread or status of particular user post")
  
 
@@ -132,7 +132,7 @@ let naviagte = useNavigate()
   
       
   <div >
-     {threadReadDetails.tweets[0].TweetReplies.map(x=>
+     { postComment.map(x=>
        <>
        <div className={style.commentMain}>
         <h4><img src="https://tse2.mm.bing.net/th?id=OIP.1yoSL-WO0YU5mQKROudvswHaHa&pid=Api&P=0"  alt= "comment profile" className={style.avatar}/></h4>
