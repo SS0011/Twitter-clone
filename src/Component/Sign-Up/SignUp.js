@@ -113,7 +113,7 @@ console.log(alreadyRegister, "i am finded data which is already in local storage
         Name: name,
         Email: email,
         Phone: phone,
-        Password: password,
+        Password: password, 
         DOB: date + " " + month + " " + year,
       };
       // console.log(userData,"i am register data")

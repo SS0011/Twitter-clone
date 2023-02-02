@@ -10,14 +10,16 @@ import { CgPoll } from "react-icons/cg";
 import { FaRetweet } from "react-icons/fa";
 import { BsUpload } from "react-icons/bs";
 import LikeButton from "../../Atom/LikeButton/LikeButton";
+import { Thread } from "../../RecoilState/Thread/Thread";
+import { useRecoilState } from "recoil";
 
 // import { TweetProfileDetails } from "../../RecoilState/TweetProfileDetails/TweetProfileDetails";
 // import { useRecoilState } from "recoil";
 
 export default function OtherProfilePage() {
-//  const[matchedUser , setMatchedUser] = useRecoilState(TweetProfileDetails)
- const matchedUser = JSON.parse(localStorage.getItem("otherUserDetails"))
-  console.log(matchedUser.tweets[0].tweetPic
+ const[threadStatus , setThreadStatus] = useRecoilState(Thread)
+ const UserTweets = JSON.parse(localStorage.getItem("otherUserDetails"))
+  console.log(UserTweets.tweets[0].tweetPic
     , "i amm from profile page");
   const naviagte = useNavigate()
   const date = new Date();
@@ -27,6 +29,11 @@ export default function OtherProfilePage() {
 
   function handleArrow() {
     naviagte('/home')
+  }
+
+  function redirectToThreadPage() {
+    setThreadStatus(UserTweets)
+    naviagte('/status')
   }
   return (
     <>
@@ -41,17 +48,17 @@ export default function OtherProfilePage() {
           <span  onClick={handleArrow} className={Style.arrow}>
             <BsArrowLeft  />
             </span>
-            <h3>{matchedUser.name}</h3>
+            <h3>{UserTweets.name}</h3>
           </div>
           <div className={Style.wallpaper}></div>
           <div className={Style.mainUserData}>
             <div className={Style.userData}>
-              <div><img  className={Style.userProflePic} src={ matchedUser.tweets[0].tweetPic } alt="pop" /></div>
-              <h3 className={Style.UpUserName}>{matchedUser.name} </h3>
-              <span>{matchedUser.handlerName}</span>
+              <div><img  className={Style.userProflePic} src={ UserTweets.tweets[0].tweetPic } alt="pop" /></div>
+              <h3 className={Style.UpUserName}>{UserTweets.name} </h3>
+              <span>{UserTweets.handlerName}</span>
               <div className={Style.joined}>
                 <CgCalendarDates className={Style.calender} />
-                <p>Joined {matchedUser.joinedDate}</p>
+                <p>Joined {UserTweets.joinedDate}</p>
               </div>
               <div className={Style.follower}>
                 <div className={Style.subFollower}>
@@ -76,46 +83,45 @@ export default function OtherProfilePage() {
           <img
          
             className={Style.userProfle}
-            src={matchedUser.tweets[0].tweetPic}
+            src={UserTweets.tweets[0].tweetPic}
             alt="profilePic"
           />
           <div className={Style.postSubContainer}>
           <div>
-          <span className={Style.postUserName}>{matchedUser.name}</span>
+          <span className={Style.postUserName}>{UserTweets.name}</span>
           <span className={Style.postHandleName}>
-            {matchedUser.handlerName}
+            {UserTweets.handlerName}
           </span>
         </div>
-        {
-            
-        }
-        <span>{matchedUser.tweets[0].tweetText}</span>
+        <div onClick={redirectToThreadPage}>
+        <span>{UserTweets.tweets[0].tweetText}</span>
 
-          <img   className={Style.tweetPic}  width="450rem" src={ matchedUser.tweets[0].tweetPic } alt="pop" />
+          <img   className={Style.tweetPic}  width="450rem" src={ UserTweets.tweets[0].tweetPic } alt="pop" />
 
+          </div>
           <span className={Style.iconsWrapper}>
               <span className={Style.subIconsWrapper}>
                 <BiMessageRounded className={Style.icons} />
                 <span className={Style.iconText}>
-                {matchedUser.tweets[0].tweetCount}
+                {UserTweets.tweets[0].tweetCount}
                 </span>
                 </span>
                 <span  className={Style.subIconsWrapper}>
                 <FaRetweet className={Style.icons} />
                 <span className={Style.iconText}>
-                {matchedUser.tweets[0].retweetCount}
+                {UserTweets.tweets[0].retweetCount}
                 </span>
                 </span>
                 <span  className={Style.subIconsWrapper}>
                 <span ><LikeButton /></span>
                 <span className={Style.iconText}>
-                {matchedUser.tweets[0].likesCount}
+                {UserTweets.tweets[0].likesCount}
                 </span>
                 </span>           
                 <span  className={Style.subIconsWrapper}>
                 <CgPoll className={Style.icons} />
                 <span className={Style.iconText}>
-                {matchedUser.tweets[0].viewsCount}
+                {UserTweets.tweets[0].viewsCount}
                 </span>
                 </span>
                 <BsUpload className={Style.icons} />

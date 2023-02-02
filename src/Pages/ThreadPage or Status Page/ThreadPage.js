@@ -1,26 +1,33 @@
 import React from "react";
 import style from "./ThreadPage.module.css";
 import { BsArrowLeft } from "react-icons/bs";
-import { CgCalendarDates } from "react-icons/cg";
 import LeftSection from "../../Section/LeftSection/LeftSection";
 import RightSection from "../../Section/RightSection/RightSection";
 import { useNavigate } from "react-router-dom";
-import {Thread, ThreadofMinePOst} from '../../RecoilState/Thread/Thread'
+import {Thread} from '../../RecoilState/Thread/Thread'
 import { useRecoilValue } from "recoil";
 import { BiMessageRounded } from "react-icons/bi";
 import { CgPoll } from "react-icons/cg";
 import { FaRetweet } from "react-icons/fa";
 import { BsUpload } from "react-icons/bs";
-import { RxAvatar } from "react-icons/rx";
 import LikeButton from "../../Atom/LikeButton/LikeButton";
-import CommentBox from "../../Atom/CommentBox/CommentBox";
+import CommentBox from "../../Component/CommentBox/CommentBox";
 
 
 export default function ThreadPage() {
 let naviagte = useNavigate()
- const threadReadDetails = useRecoilValue(Thread)
- const threadOfLogUser = useRecoilValue(ThreadofMinePOst) // mine log uswer detail post
- console.log(threadReadDetails , "I am from thread")
+ const threadReadDetails = useRecoilValue(Thread)  //threadREaddetail is an object  /empty
+
+ console.log(threadReadDetails , "I am from thread or status of particular user post")
+ 
+
+ 
+ function redirectToProfile() {
+  console.log(threadReadDetails,"i ma like count friom")
+  // setTweetDetailsProfile(element)
+  localStorage.setItem("otherUserDetails",JSON.stringify(threadReadDetails))
+  naviagte('/otherprofile')
+}
 
  function handleArrow() {
     naviagte('/home')
@@ -43,12 +50,15 @@ let naviagte = useNavigate()
 {
     //this is modification of user side post woith css
 }
-  { threadReadDetails ? 
+  
         <div>
         <div className={style.postContainer} key={threadReadDetails.name}>
        
-      
+     {
+      //other profile  page  redirect
+     } 
      <img
+     onClick={()=>redirectToProfile()}
        className={style.userProfle}
        src={threadReadDetails.tweets[0].tweetPic}
        alt="profilePic"
@@ -105,11 +115,16 @@ let naviagte = useNavigate()
        </div>
      
     
-        </div> : ""
-       }
+        </div> 
+
+        <div>
+        
+        </div>
+
+
 
        
-      <CommentBox/>
+      <CommentBox replyToName= {threadReadDetails.handlerName}/>
 
       {
         //comments

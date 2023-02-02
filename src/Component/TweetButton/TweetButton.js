@@ -14,7 +14,7 @@ import { IoEarthSharp } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import { useRecoilState } from "recoil";
 // import { Post } from "../../RecoilState/Post/Post";
-import { UserPost } from "../../RecoilState/UserPost/UserPost";
+import { UserPost } from "../../RecoilState/myTweetPost/UserPost";
 export default function TweetButton() {
   const [open, setOpen] = useState(false);
   const [tweet , setTweet] = useState("")

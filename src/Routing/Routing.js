@@ -5,7 +5,8 @@ import LoginPage from "../Pages/LoginPage/LoginPage";
 import OtherProfilePage from "../Pages/OtherProfilePage/OtherProfilePage";
 import ProfilePage from "../Pages/ProfilePage/ProfilePage";
 import SignUpPage from "../Pages/SignUpPage/SignUpPage";
-import ThreadPage from "../Pages/ThreadPage/ThreadPage";
+import MystatusPage from "../Pages/ThreadPage or Status Page/MyStatusPage";
+import ThreadPage from "../Pages/ThreadPage or Status Page/ThreadPage";
 export default function Routing() {
   return (
     <Routes>
@@ -17,6 +18,7 @@ export default function Routing() {
       <Route path="/otherprofile" element={<OtherProfilePage />} />
       
        <Route path="/status" element={<ThreadPage />} />
+       <Route path="/mystatus" element={<MystatusPage />} />
       
     </Routes>
   );

@@ -2,17 +2,21 @@ import React from 'react'
 import { useState } from "react";
 import FollowButton from "../../Atom/FollowButton/FollowButton";
 import RightBotStyle from "./Follow.module.css";
-
+import { Post } from '../../RecoilState/Post/Post';
+import { useRecoilValue } from 'recoil';
 
 export default function Trends() {
+  const postData = useRecoilValue(Post)
 
   const content = [
     {
       id: 1,
+    
+      
 
       
-      upText: "Bhuvan Bam",
-      midText: "@bhuvan.bam22",
+      upText: "The White House",
+      midText: "@The White House",
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7PCbXn-dXLt087I_3kjfqRGXmiL4ZrSvZ6k6KVjDmWU0fUf6TGuo63HM&s'
     },
     {

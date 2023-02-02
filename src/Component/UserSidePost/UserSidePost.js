@@ -1,4 +1,4 @@
-import { UserPost } from "../../RecoilState/UserPost/UserPost";
+import { UserPost } from "../../RecoilState/myTweetPost/UserPost";
 import { RxAvatar } from "react-icons/rx";
 import { useRecoilState, useRecoilValue } from "recoil";
 import style from './UserSidePost.module.css'
@@ -9,16 +9,24 @@ import { BsUpload } from "react-icons/bs";
 import { BsFillHeartFill } from "react-icons/bs";
 import LikeButton from "../../Atom/LikeButton/LikeButton";
 import { useNavigate } from "react-router-dom";
-import { ThreadofMinePOst } from "../../RecoilState/Thread/Thread";
+import { ThreadofMinePOst ,Thread} from "../../RecoilState/Thread/Thread";
 
 export default function UserSidePost() {
     let matchedUserDetails = JSON.parse(localStorage.getItem("matchedUser"))
     const UserPostData = useRecoilValue(UserPost);
     const navigate = useNavigate()
     const [threadData ,setThreadData] = useRecoilState(ThreadofMinePOst)
+    
     function redirectToProfile() {
         
         navigate('/profile')
+      }
+
+      function redirectToStatus(element) {
+        console.log(element , " i am from user side post file and want to be set in recoil")
+        setThreadData(element)
+       
+        navigate('/mystatus')
       }
      
     return(
@@ -27,7 +35,7 @@ export default function UserSidePost() {
         {
             UserPostData.map(element=> 
                 <div className={style.postContainer} key={element.name}>
-                <span onClick={()=>redirectToProfile(element)}>
+                <span onClick={()=>redirectToProfile()}>
               
             <img
               className={style.userProfle}
@@ -43,6 +51,7 @@ export default function UserSidePost() {
                 </span>
               </div>
               <div>
+              <div onClick={()=>redirectToStatus(element)}>
               <span>{element.tweetText}</span>
               {element.tweetPic ?
               <img
@@ -52,6 +61,7 @@ export default function UserSidePost() {
                 width="450rem"
               />
               : ""}
+              </div>
               <span className={style.iconsWrapper}>
               <span className={style.subIconsWrapper}>
                 <BiMessageRounded className={style.icons} />

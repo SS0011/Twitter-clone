@@ -11,7 +11,7 @@ import style from "./MidTweetBox.module.css";
 import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 // import { Post } from "../../RecoilState/Post/Post";
-import { UserPost } from "../../RecoilState/UserPost/UserPost";
+import { UserPost } from "../../RecoilState/myTweetPost/UserPost";
 
 export default function MidTweetBox() {
   const [tweet, setTweet] = useState("");

@@ -11,10 +11,7 @@ export default function ProfilePage() {
   let matchedUserDetails = JSON.parse(localStorage.getItem("matchedUser"));
   console.log(matchedUserDetails, "i amm from profile page");
   const naviagte = useNavigate()
-  const date = new Date();
-  let joinedDate = new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "full",
-  }).format(date);
+ 
 
   function handleArrow() {
     naviagte('/home')

@@ -77,7 +77,7 @@ export default function LogIn() {
     if (detailsMatched.Password === password) {
       alert(`Hey! ${detailsMatched.Name} you are successfully LOGGED-IN`);
       localStorage.setItem("matchedUser" , JSON.stringify(detailsMatched))
-    
+      setIsLogin(true)
       navigate("/home");
     } else {
       alert(

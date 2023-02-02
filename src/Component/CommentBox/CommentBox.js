@@ -1,6 +1,6 @@
 import style from './TweetBox.module.css'
-import CustomButton from "../CustomButton/CustomButton";
-import TextArea from "../TextArea/TextArea";
+import CustomButton from "../../Atom/CustomButton/CustomButton";
+import TextArea from "../../Atom/TextArea/TextArea";
 import { RxAvatar } from "react-icons/rx";
 import { MdOutlinePoll } from "react-icons/md";
 import { TfiLocationPin } from "react-icons/tfi";
@@ -11,10 +11,12 @@ import { IoEarthSharp } from "react-icons/io5";
 import { useState } from 'react';
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Thread } from '../../RecoilState/Thread/Thread';
+import { ThreadofMinePOst } from '../../RecoilState/Thread/Thread';
 
-export default function CommentBox() {
+export default function CommentBox({replyToName}) {
 
   const threadUserName = useRecoilValue(Thread)
+
   console.log(threadUserName , " I am from thread box")
 
     const [tweet, setTweet] = useState("");
@@ -43,7 +45,7 @@ export default function CommentBox() {
           {show ? (
             <CustomButton
               className={style.evryOnebtn}
-              buttonText= {`Replying to ${threadUserName.handlerName}`}
+              buttonText= {`Replying to ${replyToName}`}
             />
           ) : (
             ""

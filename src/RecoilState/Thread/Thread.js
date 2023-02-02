@@ -1,5 +1,5 @@
 import {atom} from 'recoil'
-
+//thread or status of other user post
 export const Thread = atom({
     key : "Thread",
     default : {}

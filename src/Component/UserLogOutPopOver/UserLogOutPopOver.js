@@ -5,7 +5,7 @@ import style from './UserPop.module.css'
 import { useRecoilState } from 'recoil';
 import { LoginState } from '../../RecoilState/LoginState/LoginState';
 import { useNavigate } from 'react-router-dom';
-import { UserPost } from "../../RecoilState/UserPost/UserPost";
+import { UserPost } from "../../RecoilState/myTweetPost/UserPost";
 import { useSetRecoilState } from "recoil";
 export default function UserLogOutPopOver() {
   const removeAllUserPost = useSetRecoilState(UserPost) // remode post of particuylar usewer

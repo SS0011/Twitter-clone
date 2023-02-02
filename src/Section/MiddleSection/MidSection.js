@@ -23,8 +23,8 @@ export default function MidSection() {
   
 //   const [likes ,setLikes]=useState('')
 
-  function handleLike(element, index) {
-    console.log(element, "i am liked element")
+  function handleLike() {
+  
     // let likeVariable = element.tweets[0].likesCount
     // postData.map(elem => {
     //     if(elem.)
@@ -46,7 +46,7 @@ export default function MidSection() {
     navigate('/otherprofile')
   }
  
-  function handleThread(e) {
+  function redirectToThreadOrTweetPage(e) {
     console.log(e , "i am thred post to be set on recoil form mid sec")
     setThreadData(e)
     navigate('/status')
@@ -63,12 +63,15 @@ export default function MidSection() {
           </div>
         </div>
         <MidTweetBox />
+
         <UserSidePost/>
       
        
      
 
-        
+        {
+          //jagduiush sir ka data
+        }
         {postData.map((element, index) => (
           <div className={style.postContainer} key={element.name}>
             <img
@@ -83,8 +86,10 @@ export default function MidSection() {
                 <span className={style.postHandleName}>
                   {element.handlerName}
                 </span>
-            
-              <div onClick={()=>handleThread(element)}>
+            {
+              //twet text and tweet big pic
+            }
+              <div onClick={()=>redirectToThreadOrTweetPage(element)}>
               <span>{element.tweets[0].tweetText}</span>
               <img
                 className={style.tweetPic}
