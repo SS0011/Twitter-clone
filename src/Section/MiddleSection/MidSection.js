@@ -13,46 +13,45 @@ import LikeButton from "../../Atom/LikeButton/LikeButton";
 // import { TweetProfileDetails } from "../../RecoilState/TweetProfileDetails/TweetProfileDetails";
 import { useNavigate } from "react-router-dom";
 import { Thread } from "../../RecoilState/Thread/Thread";
-import { CommentReplyState} from "../../RecoilState/CommentReplyState/CommentReplyState";
+import { CommentReplyState } from "../../RecoilState/CommentReplyState/CommentReplyState";
+import CommentDilogBox from "../../Component/CommentDilogBox/CommentDilogBox";
 
 export default function MidSection() {
   const postData = useRecoilValue(Post);
-  const [threadData ,setThreadData] = useRecoilState(Thread)
-  const [myReply , setMyReply ] = useRecoilState(CommentReplyState)
-  const [ likesCounting ,setLikesCounting] = useState(115)
-  const navigate = useNavigate()
-//   const [TweetDetailsProfile , setTweetDetailsProfile] = useRecoilState(TweetProfileDetails)
-  
-//   const [likes ,setLikes]=useState('')
+  const [threadData, setThreadData] = useRecoilState(Thread);
+  const [myReply, setMyReply] = useRecoilState(CommentReplyState);
+  const [likesCounting, setLikesCounting] = useState(115);
+  const navigate = useNavigate();
+  //   const [TweetDetailsProfile , setTweetDetailsProfile] = useRecoilState(TweetProfileDetails)
+
+  //   const [likes ,setLikes]=useState('')
 
   function handleLike() {
-  
     // let likeVariable = element.tweets[0].likesCount
     // postData.map(elem => {
     //     if(elem.)
     // })
-   
+
     // setLikes(like)
     // if(element.id === postData[0].id){
     // setLikes(element.tweets[0].likesCount + 1)
     // }
-    if( likesCounting === 115) setLikesCounting(likesCounting + 1)
-   else setLikesCounting(115)
-   
+    if (likesCounting === 115) setLikesCounting(likesCounting + 1);
+    else setLikesCounting(115);
   }
 
   function redirectToProfile(element) {
-    console.log(element,"i ma like count friom")
+    console.log(element, "i ma like count friom");
     // setTweetDetailsProfile(element)
-    localStorage.setItem("otherUserDetails",JSON.stringify(element))
-    navigate('/otherprofile')
+    localStorage.setItem("otherUserDetails", JSON.stringify(element));
+    navigate(`/otherprofile/${element.name}`);
   }
- 
+
   function redirectToThreadOrTweetPage(e) {
-    console.log(e , "i am thred post to be set on recoil form mid sec")
-    setThreadData(e)
-    setMyReply(e.tweets[0].TweetReplies)
-    navigate('/status')
+    console.log(e, "i am thred post to be set on recoil form mid sec");
+    setThreadData(e);
+    setMyReply(e.tweets[0].TweetReplies);
+    navigate("/status");
   }
 
   return (
@@ -67,10 +66,7 @@ export default function MidSection() {
         </div>
         <MidTweetBox />
 
-        <UserSidePost/>
-      
-       
-     
+        <UserSidePost />
 
         {
           //jagduiush sir ka data
@@ -78,57 +74,63 @@ export default function MidSection() {
         {postData.map((element, index) => (
           <div className={style.postContainer} key={element.name}>
             <img
-            onClick={()=>redirectToProfile(element)}
+              onClick={() => redirectToProfile(element)}
               className={style.userProfle}
               src={element.tweets[0].tweetPic}
               alt="profilePic"
             />
-            <div  className={style.postSubContainer}>
+            <div className={style.postSubContainer}>
               <div>
                 <span className={style.postUserName}>{element.name}</span>
                 <span className={style.postHandleName}>
                   {element.handlerName}
                 </span>
-            {
-              //twet text and tweet big pic
-            }
-              <div onClick={()=>redirectToThreadOrTweetPage(element)}>
-              <span>{element.tweets[0].tweetText}</span>
-              <img
-                className={style.tweetPic}
-                src={element.tweets[0].tweetPic}
-                alt="tweetPic"
-                width="450rem"
-              />
-              </div>
-              <span className={style.iconsWrapper}>
-              <span className={style.subIconsWrapper}>
-                <BiMessageRounded className={style.icons} />
-                <span className={style.iconText}>
-                {element.tweets[0].tweetCount}
+                {
+                  //twet text and tweet big pic
+                }
+                <div onClick={() => redirectToThreadOrTweetPage(element)}>
+                  <span>{element.tweets[0].tweetText}</span>
+                  </div>
+                  <img onClick={()=>navigate('/status')}
+                    className={style.tweetPic}
+                    src={element.tweets[0].tweetPic}
+                    alt="tweetPic"
+                    width="450rem"
+                  />
+                <span className={style.iconsWrapper}>
+                  <span
+                    
+                    className={style.subIconsWrapper}
+                  >
+                    <BiMessageRounded className={style.icons} />
+                    <CommentDilogBox />
+                    <span className={style.iconText}>
+                      {element.tweets[0].tweetCount}
+                    </span>
+                  </span>
+                  <span className={style.subIconsWrapper}>
+                    <FaRetweet className={style.icons} />
+                    <span className={style.iconText}>
+                      {element.tweets[0].retweetCount}
+                    </span>
+                  </span>
+                  <span className={style.subIconsWrapper}>
+                    <span onClick={() => handleLike()}>
+                      <LikeButton />
+                    </span>
+                    {
+                      //element.tweets[0].likesCount
+                    }
+                    {likesCounting}
+                  </span>
+                  <span className={style.subIconsWrapper}>
+                    <CgPoll className={style.icons} />
+                    <span className={style.iconText}>
+                      {element.tweets[0].viewsCount}
+                    </span>
+                  </span>
+                  <BsUpload className={style.icons} />
                 </span>
-                </span>
-                <span  className={style.subIconsWrapper}>
-                <FaRetweet className={style.icons} />
-                <span className={style.iconText}>
-                {element.tweets[0].retweetCount}
-                </span>
-                </span>
-                <span  className={style.subIconsWrapper}>
-                <span onClick={()=>handleLike()}><LikeButton /></span>
-              {
-                //element.tweets[0].likesCount
-            }
-            {likesCounting}
-                </span>
-                <span  className={style.subIconsWrapper}>
-                <CgPoll className={style.icons} />
-                <span className={style.iconText}>
-                {element.tweets[0].viewsCount}
-                </span>
-                </span>
-                <BsUpload className={style.icons} />
-              </span>
               </div>
             </div>
           </div>

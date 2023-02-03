@@ -26,7 +26,7 @@ let naviagte = useNavigate()
   console.log(threadReadDetails,"i ma like count friom")
   // setTweetDetailsProfile(element)
   localStorage.setItem("otherUserDetails",JSON.stringify(threadReadDetails))
-  naviagte('/otherprofile')
+  naviagte(`/otherprofile/${threadReadDetails.name}`);
 }
 
  function handleArrow() {

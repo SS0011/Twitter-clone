@@ -14,7 +14,7 @@ import UserLogOutPopOver from "../../Component/UserLogOutPopOver/UserLogOutPopOv
 import { Link } from "react-router-dom";
 
 export default function LeftSection() {
-
+let matchedUserData =JSON.parse(localStorage.getItem("matchedUser"))
   const buttonList = [
     {
       icon: <ImHome2 className={style.icon} />,
@@ -42,7 +42,7 @@ export default function LeftSection() {
     },
     {
       icon: <HiOutlineUser className={style.icon} />,
-      text: <Link style={{  textDecoration: "none"}} to='/profile'>Profile</Link> ,
+      text: <Link style={{  textDecoration: "none"}} to= {`/profile/${matchedUserData.Name}`}>Profile</Link> ,
     },
     {
       icon: <CgMoreO className={style.icon} />,

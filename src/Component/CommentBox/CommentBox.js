@@ -13,11 +13,13 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { Thread } from '../../RecoilState/Thread/Thread';
 import { ThreadofMinePOst } from '../../RecoilState/Thread/Thread';
 import { CommentReplyState } from "../../RecoilState/CommentReplyState/CommentReplyState"
+import { myCommentReplyState} from "../../RecoilState/CommentReplyState/myCommentReplyState";
 
 export default function CommentBox({replyToName}) {
 const matchedUserData = JSON.parse(localStorage.getItem("matchedUser"))
   const threadUserName = useRecoilValue(Thread)
   const [newReply ,setNewReply] = useRecoilState(CommentReplyState)
+  const [newMyReply ,setMyNewReply] = useRecoilState(myCommentReplyState)
   console.log(threadUserName , " I am from thread box")
 
     const [tweetReply, setTweetRelpy] = useState("");
@@ -40,6 +42,7 @@ const matchedUserData = JSON.parse(localStorage.getItem("matchedUser"))
          }
      setNewReply([myReply,...newReply])
         setTweetRelpy("")
+        setMyNewReply([myReply,...newMyReply])
       }
     return(
         <>

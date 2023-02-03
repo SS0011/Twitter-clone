@@ -10,6 +10,7 @@ import { BsFillHeartFill } from "react-icons/bs";
 import LikeButton from "../../Atom/LikeButton/LikeButton";
 import { useNavigate } from "react-router-dom";
 import { ThreadofMinePOst ,Thread} from "../../RecoilState/Thread/Thread";
+import CommentDilogBox from "../CommentDilogBox/CommentDilogBox";
 
 export default function UserSidePost() {
     let matchedUserDetails = JSON.parse(localStorage.getItem("matchedUser"))
@@ -18,8 +19,8 @@ export default function UserSidePost() {
     const [threadData ,setThreadData] = useRecoilState(ThreadofMinePOst)
     
     function redirectToProfile() {
-        
-        navigate('/profile')
+        // alert("i am clik")
+        navigate(`/profile/${matchedUserDetails.Name}`)
       }
 
       function redirectToStatus(element) {
@@ -64,7 +65,10 @@ export default function UserSidePost() {
               </div>
               <span className={style.iconsWrapper}>
               <span className={style.subIconsWrapper}>
+              <span>
                 <BiMessageRounded className={style.icons} />
+                <CommentDilogBox/>
+                </span>
                 <span className={style.iconText}>
                 {element.tweetCount}
                 </span>
