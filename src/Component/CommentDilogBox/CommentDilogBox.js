@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import Dialog from '@mui/material/Dialog';
 import CommentBox from '../CommentBox/CommentBox';
+import { BiMessageRounded } from 'react-icons/bi';
 
 
 export default function CommentDilogBox() {
@@ -17,23 +18,20 @@ export default function CommentDilogBox() {
 
   return (
     <div>
-      <button  onClick={handleClickOpen}>
-        r
-      </button>
+      <span  onClick={handleClickOpen}>
+       <BiMessageRounded />
+      </span>
       <Dialog
         open={open}
         onClose={handleClose}
      
       >
 
-        <CommentBox />
+        <CommentBox handleClose={handleClose} />
        
       
       
-          <button onClick={handleClose}>Disagree</button>
-          <button onClick={handleClose} autoFocus>
-            Agree
-          </button>
+         
        
       </Dialog>
     </div>

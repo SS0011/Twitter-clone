@@ -66,7 +66,7 @@ export default function UserSidePost() {
               <span className={style.iconsWrapper}>
               <span className={style.subIconsWrapper}>
               <span>
-                <BiMessageRounded className={style.icons} />
+                
                 <CommentDilogBox/>
                 </span>
                 <span className={style.iconText}>

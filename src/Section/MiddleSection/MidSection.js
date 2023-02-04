@@ -3,7 +3,7 @@ import MidTweetBox from "../../Component/MiddleTweetBox/MidTweetBox";
 import style from "./MidSection.module.css";
 import { Post } from "../../RecoilState/Post/Post";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { BiMessageRounded } from "react-icons/bi";
+
 import { CgPoll } from "react-icons/cg";
 import { FaRetweet } from "react-icons/fa";
 import { BsUpload } from "react-icons/bs";
@@ -102,7 +102,7 @@ export default function MidSection() {
                     
                     className={style.subIconsWrapper}
                   >
-                    <BiMessageRounded className={style.icons} />
+                   
                     <CommentDilogBox />
                     <span className={style.iconText}>
                       {element.tweets[0].tweetCount}

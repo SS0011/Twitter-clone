@@ -15,7 +15,7 @@ import { ThreadofMinePOst } from '../../RecoilState/Thread/Thread';
 import { CommentReplyState } from "../../RecoilState/CommentReplyState/CommentReplyState"
 import { myCommentReplyState} from "../../RecoilState/CommentReplyState/myCommentReplyState";
 
-export default function CommentBox({replyToName}) {
+export default function CommentBox({replyToName,handleClose}) {
 const matchedUserData = JSON.parse(localStorage.getItem("matchedUser"))
   const threadUserName = useRecoilValue(Thread)
   const [newReply ,setNewReply] = useRecoilState(CommentReplyState)
@@ -43,6 +43,7 @@ const matchedUserData = JSON.parse(localStorage.getItem("matchedUser"))
      setNewReply([myReply,...newReply])
         setTweetRelpy("")
         setMyNewReply([myReply,...newMyReply])
+        handleClose("")
       }
     return(
         <>
@@ -52,7 +53,7 @@ const matchedUserData = JSON.parse(localStorage.getItem("matchedUser"))
           {show ? (
             <CustomButton
               className={style.evryOnebtn}
-              buttonText= {`Replying to ${replyToName}`}
+              buttonText= {`Replying to `}
             />
           ) : (
             ""
