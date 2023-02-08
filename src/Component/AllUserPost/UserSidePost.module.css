@@ -57,9 +57,14 @@
     align-items: center;
     gap: 0.5rem;
 }
+
 .icons{
     color: gray;
     font-size: 1.1rem;
+}
+.icons:hover{
+    font-size: 1.3rem;
+    
 }
 .iconText{
     color: gray;

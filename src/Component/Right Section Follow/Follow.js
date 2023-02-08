@@ -3,7 +3,9 @@ import { useState } from "react";
 import FollowButton from "../../Atom/FollowButton/FollowButton";
 import RightBotStyle from "./Follow.module.css";
 import { Post } from '../../RecoilState/Post/Post';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import { UserPost } from '../../RecoilState/myTweetPost/UserPost';
 
 export default function Trends() {
   let matchedUserData = JSON.parse(localStorage.getItem("matchedUser"))
@@ -11,9 +13,9 @@ let usersData =  JSON.parse(localStorage.getItem("UsersDetails")) || []
 console.log(usersData , "userData")
  let followList = usersData.filter(x => x.UserName !==  matchedUserData.UserName)
  console.log(followList,"i am fkooww")
+const navigate = useNavigate()
 
-
-
+const setUserSidePost = useSetRecoilState(UserPost);
  
 
  
@@ -27,6 +29,12 @@ function handleShowMore() {
     setX(3)
   }
 }
+function redirectToProfile(element){
+  console.log(element ,"i am follow")
+  localStorage.setItem("otherUserPostObj" , JSON.stringify(element)) 
+  setUserSidePost(element)
+  navigate(`/${element.Name}`)
+}
   return (
     <>
     {   followList.length  ? 
@@ -38,6 +46,7 @@ function handleShowMore() {
           followList.slice(0,x).map((element) => (
           <div className={RightBotStyle.contentmain}>
              <img
+             onClick={()=>redirectToProfile(element)}
                 style={{  borderRadius: "50%" }}
                 src="https://cdn-icons-png.flaticon.com/512/64/64572.png"
                 width="50rem"

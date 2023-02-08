@@ -22,16 +22,21 @@ let naviagte = useNavigate()
 //  console.log(threadReadDetails , "I am from thread or status of particular user post")
  let particularTweetData = JSON.parse(localStorage.getItem("particularTweet")) || {}
  let commentData = JSON.parse(localStorage.getItem("commentData")) || []
+ let matchedUserData = JSON.parse(localStorage.getItem("matchedUser"))
 
  let filteredCommentsForParticularPost = commentData.filter(x => x.id === particularTweetData.id)
 console.log(filteredCommentsForParticularPost,"m from particulat tweet filter by id comment")
  const readCommentData = useRecoilValue(Comment)
+ const navigate = useNavigate()
  
  function redirectToProfile() {
-  // console.log(threadReadDetails,"i ma like count friom")
-  // setTweetDetailsProfile(element)
-  // localStorage.setItem("otherUserDetails",JSON.stringify(threadReadDetails))
-  // naviagte(`/otherprofile/${threadReadDetails.name}`);
+  if(matchedUserData.Name === particularTweetData.Name){
+    navigate(`/profile/${particularTweetData.Name}`)
+  }else{
+    localStorage.setItem("otherUserPostObj" , JSON.stringify(particularTweetData))
+    navigate(`/${particularTweetData.Name}`)
+  }
+
 }
 
  function handleArrow() {

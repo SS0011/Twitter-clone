@@ -44,7 +44,7 @@ export default function ClientSidePost() {
         console.log(element , " i am from user side post file and want to be set in recoil")
         setThreadData(element)
        
-        navigate('/mystatus')
+        navigate('/status')
       }
      
     return(

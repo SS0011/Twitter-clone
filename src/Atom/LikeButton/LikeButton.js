@@ -1,7 +1,7 @@
 
 import { BsFillHeartFill } from "react-icons/bs";
 import { useState } from "react";
-export default function LikeButton() {
+export default function LikeButton({className}) {
  const [show , setShow] = useState(false)
     function colorRed() {
         if(show=== true ){
@@ -21,7 +21,7 @@ export default function LikeButton() {
 
     return (
         <>
-        <BsFillHeartFill onClick={colorRed} style={show ? {color : "red"} :{color : "grey"}} />
+        <BsFillHeartFill className={className} onClick={colorRed} style={show ? {color : "red"} :{color : "grey"}} />
         </>
     )
 }

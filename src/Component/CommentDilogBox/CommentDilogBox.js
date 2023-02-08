@@ -5,7 +5,7 @@ import CommentBox from '../CommentBox/CommentBox';
 import { BiMessageRounded } from 'react-icons/bi';
 
 
-export default function CommentDilogBox() {
+export default function CommentDilogBox({className}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -18,8 +18,8 @@ export default function CommentDilogBox() {
 
   return (
     <div>
-      <span  onClick={handleClickOpen}>
-       <BiMessageRounded />
+      <span className={className}  onClick={handleClickOpen}>
+       <BiMessageRounded  />
       </span>
       <Dialog
         open={open}

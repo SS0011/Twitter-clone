@@ -7,9 +7,8 @@ import { TfiLocationPin } from "react-icons/tfi";
 import { TfiGallery } from "react-icons/tfi";
 import { TbCalendarStats } from "react-icons/tb";
 import { AiOutlineFileGif } from "react-icons/ai";
-import { IoEarthSharp } from "react-icons/io5";
 import { useState } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Thread } from '../../RecoilState/Thread/Thread';
 import { ThreadofMinePOst } from '../../RecoilState/Thread/Thread';
 // import { CommentReplyState } from "../../RecoilState/CommentReplyState/CommentReplyState"
@@ -55,7 +54,7 @@ const setCommentData = useSetRecoilState(Comment)
          localStorage.setItem("commentData" ,JSON.stringify(comment))
          setCommentData(comment)
 
-        console.log(reply , "this is my reply from commntbox file")
+        // console.log(reply , "this is my reply from commntbox file")
        
         // setNewReply([reply, ...newReply]);
         // setMyNewReply([reply, ...newMyReply]);

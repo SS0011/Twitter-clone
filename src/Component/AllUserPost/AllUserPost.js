@@ -1,15 +1,12 @@
 import { UserPost } from "../../RecoilState/myTweetPost/UserPost";
-import { RxAvatar } from "react-icons/rx";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import style from './UserSidePost.module.css'
-import { BiMessageRounded } from "react-icons/bi";
 import { CgPoll } from "react-icons/cg";
 import { FaRetweet } from "react-icons/fa";
 import { BsUpload } from "react-icons/bs";
-import { BsFillHeartFill } from "react-icons/bs";
 import LikeButton from "../../Atom/LikeButton/LikeButton";
 import { useNavigate } from "react-router-dom";
-import { ThreadofMinePOst ,Thread} from "../../RecoilState/Thread/Thread";
+import { ThreadofMinePOst } from "../../RecoilState/Thread/Thread";
 import CommentDilogBox from "../CommentDilogBox/CommentDilogBox";
 import { Post } from "../../RecoilState/Post/Post";
 
@@ -17,7 +14,7 @@ export default function AllUserPost({filterPost}) {
     let matchedUserDetails = JSON.parse(localStorage.getItem("matchedUser"))
     let allPost = JSON.parse(localStorage.getItem("allPost")) || []
     
-    let readUserSidePost = useRecoilValue(Post)  //object //clcked
+    let readUserSidePost = useRecoilValue(Post)  //bluff to referesh the page
     
     console.log(allPost , "userSidePOst")
     
@@ -25,7 +22,7 @@ export default function AllUserPost({filterPost}) {
 
     const setUserSidePost = useSetRecoilState(UserPost);
     const navigate = useNavigate()
-    const [threadData ,setThreadData] = useRecoilState(ThreadofMinePOst)
+    
     
     function redirectToProfile(element) {
         // alert("i am clik")
@@ -93,7 +90,7 @@ export default function AllUserPost({filterPost}) {
               <span className={style.subIconsWrapper}>
               <span>
                 <span onClick={()=>particularTweetSet(element)}>
-                <CommentDilogBox  />
+                <CommentDilogBox className={style.icons} />
                 </span>
                 </span>
                 <span className={style.iconText}>
@@ -107,7 +104,7 @@ export default function AllUserPost({filterPost}) {
                 </span>
                 </span>
                 <span  className={style.subIconsWrapper}>
-                <LikeButton />
+                <LikeButton className={style.icons} />
                 <span className={style.iconText}>
                 {element.likesCount}
                 </span>

@@ -18,7 +18,7 @@ let matchedUserData =JSON.parse(localStorage.getItem("matchedUser"))
   const buttonList = [
     {
       icon: <ImHome2 className={style.icon} />,
-      text: <Link style={{  textDecoration: "none"}} to='/home'>Home </Link>,
+      text: <Link style={{  textDecoration: "none" ,color:"black"}} to='/home'>Home </Link>,
     },
     {
       icon: <FiHash className={style.icon} />,
@@ -42,7 +42,7 @@ let matchedUserData =JSON.parse(localStorage.getItem("matchedUser"))
     },
     {
       icon: <HiOutlineUser className={style.icon} />,
-      text: <Link style={{  textDecoration: "none"}} to= {`/profile/${matchedUserData.Name}`}>Profile</Link> ,
+      text: <Link style={{  textDecoration: "none" ,color:"black"}} to= {`/profile/${matchedUserData.Name}`}>Profile</Link> ,
     },
     {
       icon: <CgMoreO className={style.icon} />,
