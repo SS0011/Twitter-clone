@@ -5,11 +5,18 @@ import { CgCalendarDates } from "react-icons/cg";
 import LeftSection from "../../Section/LeftSection/LeftSection";
 import RightSection from "../../Section/RightSection/RightSection";
 import { useNavigate } from "react-router-dom";
-import UserSidePost from "../../Component/UserSidePost/UserSidePost";
+import UserSidePost from "../../Component/AllUserPost/AllUserPost";
+import { useRecoilValue } from "recoil";
+import { UserPost } from "../../RecoilState/myTweetPost/UserPost";
+import MySidePost from "../../Component/My Side Post/MySidePost";
 
 export default function ProfilePage() {
   let matchedUserDetails = JSON.parse(localStorage.getItem("matchedUser"));
-  console.log(matchedUserDetails, "i amm from profile page");
+  let readUserSidePost = useRecoilValue(UserPost)  //object
+  console.log(readUserSidePost, "i amm from profile page");
+  let allPOst = JSON.parse(localStorage.getItem("allPost")) 
+
+ 
   const naviagte = useNavigate()
  
 
@@ -33,9 +40,9 @@ export default function ProfilePage() {
           <div className={Style.wallpaper}></div>
           <div className={Style.mainUserData}>
             <div className={Style.userData}>
-              <div className={Style.userProflePic}></div>
+              <div ><img className={Style.userProflePic} src="https://cdn-icons-png.flaticon.com/512/64/64572.png" alt="" /></div>
               <h3 className={Style.UpUserName}>{matchedUserDetails.Name} </h3>
-              <span>{matchedUserDetails.Email || matchedUserDetails.Name.toLowerCase()+"@" }</span>
+              <span>{matchedUserDetails.UserName}</span>
               <div className={Style.joined}>
                 <CgCalendarDates className={Style.calender} />
                 <p>Joined June 2009</p>
@@ -59,7 +66,9 @@ export default function ProfilePage() {
           <h4>Likes</h4>
           </div>
 
-          <UserSidePost />
+          {allPOst? 
+          <MySidePost  />
+          : ""}
         </div>
 
         <div style={{ border: "0px solid" }}>

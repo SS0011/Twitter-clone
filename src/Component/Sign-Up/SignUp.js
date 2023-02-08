@@ -111,6 +111,7 @@ console.log(alreadyRegister, "i am finded data which is already in local storage
     } else {
       const userData = {
         Name: name,
+        UserName : "@"+name.split(" ").join("")+Math.floor(Math.random()* 1000),
         Email: email,
         Phone: phone,
         Password: password, 

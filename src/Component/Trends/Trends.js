@@ -50,8 +50,9 @@ export default function Trends() {
     
   ];
 
-  const [list, setList] = useState(content.slice(0,2));
+  const [list, setList] = useState(content);
   const [showMore,setShowMore ] = useState(false)
+  const [x,setX ] = useState(2)
 
   function notInterested(element) {
     console.log(element);
@@ -74,9 +75,11 @@ export default function Trends() {
   }
 
   function handleShowMoreItem() {
-    setList(content)
-    if(list.length === content.length){
-        setList(content.slice(0,2))
+    
+    if(x === 2){
+      setX(list.length)
+    }else{
+      setX(2)
     }
     if(!showMore){
         setShowMore(true)
@@ -90,8 +93,8 @@ export default function Trends() {
       <div className={RightSecStyle.box}>
         <h3 style={{paddingLeft:"1rem"}}>What's Happening </h3>
 
-        {list.map((element) => (
-          <div className={RightSecStyle.contentmain}>
+        {list.slice(0,x).map((element) => (
+          <div key={element.id} className={RightSecStyle.contentmain}>
             <div className={RightSecStyle.content}>
               <span className={RightSecStyle.upText}>{element.upText}</span>
               <span className={RightSecStyle.content1}>{element.midText}</span>

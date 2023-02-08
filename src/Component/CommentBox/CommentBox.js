@@ -9,19 +9,25 @@ import { TbCalendarStats } from "react-icons/tb";
 import { AiOutlineFileGif } from "react-icons/ai";
 import { IoEarthSharp } from "react-icons/io5";
 import { useState } from 'react';
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { Thread } from '../../RecoilState/Thread/Thread';
 import { ThreadofMinePOst } from '../../RecoilState/Thread/Thread';
-import { CommentReplyState } from "../../RecoilState/CommentReplyState/CommentReplyState"
-import { myCommentReplyState} from "../../RecoilState/CommentReplyState/myCommentReplyState";
+// import { CommentReplyState } from "../../RecoilState/CommentReplyState/CommentReplyState"
+// import { myCommentReplyState} from "../../RecoilState/CommentReplyState/myCommentReplyState";
+import { Comment } from '../../RecoilState/Post/Post';
 
-export default function CommentBox({replyToName,handleClose}) {
+export default function CommentBox({element}) {
 const matchedUserData = JSON.parse(localStorage.getItem("matchedUser"))
-  const threadUserName = useRecoilValue(Thread)
-  const [newReply ,setNewReply] = useRecoilState(CommentReplyState)
-  const [newMyReply ,setMyNewReply] = useRecoilState(myCommentReplyState)
-  console.log(threadUserName , " I am from thread box")
+const particularTweet = JSON.parse(localStorage.getItem("particularTweet"))
+const setCommentData = useSetRecoilState(Comment)
 
+
+
+  const threadUserName = useRecoilValue(Thread)
+  // const [newReply ,setNewReply] = useRecoilState(CommentReplyState)
+  // const [newMyReply ,setMyNewReply] = useRecoilState(myCommentReplyState)
+  console.log(threadUserName , " I am from thread box")
+// console.log(postData,"from comment selectpost")
     const [tweetReply, setTweetRelpy] = useState("");
     const [show, setShow] = useState(false);
     //const [tweetPost,setTweetPost] = useRecoilState(UserPost)
@@ -33,17 +39,28 @@ const matchedUserData = JSON.parse(localStorage.getItem("matchedUser"))
       function handleShow() {
         setShow(true);
       }
-      function handleTweetPost() {
-         alert("i am twet")
-        const myReply = {
-          name : matchedUserData.Name,
-          handlerName :  matchedUserData.Name,
-          tweetReplyText : tweetReply
-         }
-     setNewReply([myReply,...newReply])
-        setTweetRelpy("")
-        setMyNewReply([myReply,...newMyReply])
-        handleClose("")
+      function handleTweetReply() {
+        
+        const reply = {
+   name : matchedUserData.Name,
+   UserName : matchedUserData.UserName,
+  tweetReplyText : tweetReply,
+  id :  particularTweet.id
+
+        }
+
+
+        let comment = localStorage.commentData?.length > 0  ? JSON.parse(localStorage.getItem("commentData")) : []
+         comment = [reply , ...comment]
+         localStorage.setItem("commentData" ,JSON.stringify(comment))
+         setCommentData(comment)
+
+        console.log(reply , "this is my reply from commntbox file")
+       
+        // setNewReply([reply, ...newReply]);
+        // setMyNewReply([reply, ...newMyReply]);
+        setTweetRelpy("");
+      
       }
     return(
         <>
@@ -77,7 +94,7 @@ const matchedUserData = JSON.parse(localStorage.getItem("matchedUser"))
           <TbCalendarStats className={style.iconss} />
           <TfiLocationPin className={style.iconss} />
         </div>
-        <CustomButton onClick={handleTweetPost} className={style.tweetPushbtn} buttonText="Tweet" />
+        <CustomButton onClick={handleTweetReply} className={style.tweetPushbtn} buttonText="Reply" />
       </div>
 
       

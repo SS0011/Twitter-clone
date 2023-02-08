@@ -1,5 +1,5 @@
 import LeftSection from "../../Section/LeftSection/LeftSection";
-import MidSection from "../../Section/MiddleSection/MidSection";
+import MidSection from "../../Section/MiddleSection/MiddleSection";
 import RightSection from "../../Section/RightSection/RightSection";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";

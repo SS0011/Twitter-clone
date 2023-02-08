@@ -12,21 +12,26 @@ import { FaRetweet } from "react-icons/fa";
 import { BsUpload } from "react-icons/bs";
 import LikeButton from "../../Atom/LikeButton/LikeButton";
 import CommentBox from "../../Component/CommentBox/CommentBox";
-import { CommentReplyState} from "../../RecoilState/CommentReplyState/CommentReplyState";
+// import { CommentReplyState} from "../../RecoilState/CommentReplyState/CommentReplyState";
+import { Comment } from "../../RecoilState/Post/Post";
 
-export default function ThreadPage() {
+export default function ParticularTweet() {
 let naviagte = useNavigate()
- const threadReadDetails = useRecoilValue(Thread)  //threadREaddetail is an object  /empty
- const postComment = useRecoilValue(CommentReplyState)
- console.log(threadReadDetails , "I am from thread or status of particular user post")
- 
+//  const threadReadDetails = useRecoilValue(Thread)  //threadREaddetail is an object  /empty
+//  const postComment = useRecoilValue(CommentReplyState)
+//  console.log(threadReadDetails , "I am from thread or status of particular user post")
+ let particularTweetData = JSON.parse(localStorage.getItem("particularTweet")) || {}
+ let commentData = JSON.parse(localStorage.getItem("commentData")) || []
 
+ let filteredCommentsForParticularPost = commentData.filter(x => x.id === particularTweetData.id)
+console.log(filteredCommentsForParticularPost,"m from particulat tweet filter by id comment")
+ const readCommentData = useRecoilValue(Comment)
  
  function redirectToProfile() {
-  console.log(threadReadDetails,"i ma like count friom")
+  // console.log(threadReadDetails,"i ma like count friom")
   // setTweetDetailsProfile(element)
-  localStorage.setItem("otherUserDetails",JSON.stringify(threadReadDetails))
-  naviagte(`/otherprofile/${threadReadDetails.name}`);
+  // localStorage.setItem("otherUserDetails",JSON.stringify(threadReadDetails))
+  // naviagte(`/otherprofile/${threadReadDetails.name}`);
 }
 
  function handleArrow() {
@@ -52,7 +57,7 @@ let naviagte = useNavigate()
 }
   
         <div>
-        <div className={style.postContainer} key={threadReadDetails.name}>
+        <div className={style.postContainer} key={particularTweetData.Name}>
        
      {
       //other profile  page  redirect
@@ -60,27 +65,27 @@ let naviagte = useNavigate()
      <img
      onClick={()=>redirectToProfile()}
        className={style.userProfle}
-       src={threadReadDetails.tweets[0].tweetPic}
+       src="https://cdn-icons-png.flaticon.com/512/64/64572.png"
        alt="profilePic"
      />
     
      
     
        <div>
-         <span className={style.postUserName}>{threadReadDetails.name}</span><br/>
+         <span className={style.postUserName}>{particularTweetData.Name}</span><br/>
          <span className={style.postHandleName}>
-           {threadReadDetails.handlerName}
+           {particularTweetData.UserName}
          </span>
        </div>
        </div>
        <div className={style.postSubContainer}>
       
        
-       <span className={style.tweetText}>{threadReadDetails.tweets[0].tweetText}</span>
-       {threadReadDetails.tweets[0].tweetPic ?
+       <span className={style.tweetText}>{particularTweetData.tweetText}</span>
+       {particularTweetData.tweetPic ?
        <img
          className={style.tweetPic}
-         src={threadReadDetails.tweets[0].tweetPic}
+         src={particularTweetData.tweetPic}
          alt="tweetPic"
          width="560rem"
        />
@@ -89,25 +94,33 @@ let naviagte = useNavigate()
        <span className={style.subIconsWrapper}>
          <BiMessageRounded className={style.icons} />
          <span className={style.iconText}>
-         {threadReadDetails.tweets[0].tweetCount}
+         {
+          //count
+         } 
          </span>
          </span>
          <span  className={style.subIconsWrapper}>
          <FaRetweet className={style.icons} />
          <span className={style.iconText}>
-         {threadReadDetails.tweets[0].retweetCount}
+         {
+          //likes
+         }
          </span>
          </span>
          <span  className={style.subIconsWrapper}>
          <LikeButton />
          <span className={style.iconText}>
-         {threadReadDetails.tweets[0].likesCount}
+         {
+          //likes
+         }
          </span>
          </span>
          <span  className={style.subIconsWrapper}>
          <CgPoll className={style.icons} />
          <span className={style.iconText}>
-         {threadReadDetails.tweets[0].viewsCount}
+         {
+          //viwes count
+         }
          </span>
          </span>
          <BsUpload className={style.icons} />
@@ -124,7 +137,7 @@ let naviagte = useNavigate()
 
 
        
-      <CommentBox replyToName= {threadReadDetails.handlerName}/>
+      <CommentBox />
 
       {
         //comments
@@ -132,7 +145,8 @@ let naviagte = useNavigate()
   
       
   <div >
-     { postComment.map(x=>
+     { 
+      filteredCommentsForParticularPost.map(x=>
        <>
        <div className={style.commentMain}>
         <h4><img src="https://tse2.mm.bing.net/th?id=OIP.1yoSL-WO0YU5mQKROudvswHaHa&pid=Api&P=0"  alt= "comment profile" className={style.avatar}/></h4>
@@ -149,25 +163,34 @@ let naviagte = useNavigate()
         <span className={style.subIconsWrapper}>
           <BiMessageRounded className={style.icons} />
           <span className={style.iconText}>
-          {threadReadDetails.tweets[0].tweetCount}
+          {
+            //count
+          }
           </span>
           </span>
           <span  className={style.subIconsWrapper}>
           <FaRetweet className={style.icons} />
           <span className={style.iconText}>
-          {threadReadDetails.tweets[0].retweetCount}
+          {
+            //retweet count
+          }
           </span>
           </span>
           <span  className={style.subIconsWrapper}>
           <LikeButton />
           <span className={style.iconText}>
-          {threadReadDetails.tweets[0].likesCount}
+          {
+            //likes
+          }
           </span>
           </span>
           <span  className={style.subIconsWrapper}>
           <CgPoll className={style.icons} />
           <span className={style.iconText}>
-          {threadReadDetails.tweets[0].viewsCount}
+          {
+            
+            //views count
+          }
           </span>
           </span>
           <BsUpload className={style.icons} />
@@ -175,7 +198,8 @@ let naviagte = useNavigate()
         </div>
         </div>
         </>
-        )}
+        )
+      }
       </div>
  
 

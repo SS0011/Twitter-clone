@@ -7,7 +7,7 @@ import { LoginState } from '../../RecoilState/LoginState/LoginState';
 import { useNavigate } from 'react-router-dom';
 import { UserPost } from "../../RecoilState/myTweetPost/UserPost";
 import { useSetRecoilState } from "recoil";
-export default function UserLogOutPopOver() {
+export default function LogOutPopOver() {
   const removeAllUserPost = useSetRecoilState(UserPost) // remode post of particuylar usewer
   let matchedUserDetails = JSON.parse(localStorage.getItem("matchedUser"))
   // console.log(matchedUserDetails)
@@ -39,11 +39,15 @@ export default function UserLogOutPopOver() {
       <div className={style.button} onClick={handleClick}>
         <div className={style.wrap} >
           <div>
-          <RxAvatar className={style.icon}/>
+          <img
+              className={style.userProfle}
+              src="https://cdn-icons-png.flaticon.com/512/64/64572.png"
+              alt="profilePic"
+            />
           </div>
           <div className={style.user }>
-          <span>{matchedUserDetails.Name}</span><br/>
-          <span>{matchedUserDetails.Email || matchedUserDetails.Phone}</span>
+          <span className={style.name }>{matchedUserDetails.Name}</span><br/>
+          <span className={style.userName }>{matchedUserDetails.UserName}</span>
           </div>
           <h3>...</h3>
         </div>
@@ -72,8 +76,11 @@ export default function UserLogOutPopOver() {
         }}
       >
        <div className={style.content} >
-         <h4>Add Existing Account</h4>
-         <h4 onClick={handleLogOut}>Log Out {matchedUserDetails.Name}</h4>
+       
+         <div className={style.option} >Add Existing Account</div>
+         
+         <div className={style.option} onClick={handleLogOut}>Log Out {matchedUserDetails.Name}</div>
+        
        </div>
       </Popover>
     </div>

@@ -27,7 +27,7 @@ export default function CommentDilogBox() {
      
       >
 
-        <CommentBox handleClose={handleClose} />
+        <CommentBox  handleClose={handleClose} />
        
       
       

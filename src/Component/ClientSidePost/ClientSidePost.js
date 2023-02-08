@@ -1,6 +1,6 @@
 import { UserPost } from "../../RecoilState/myTweetPost/UserPost";
 import { RxAvatar } from "react-icons/rx";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import style from './UserSidePost.module.css'
 import { BiMessageRounded } from "react-icons/bi";
 import { CgPoll } from "react-icons/cg";
@@ -11,16 +11,33 @@ import LikeButton from "../../Atom/LikeButton/LikeButton";
 import { useNavigate } from "react-router-dom";
 import { ThreadofMinePOst ,Thread} from "../../RecoilState/Thread/Thread";
 import CommentDilogBox from "../CommentDilogBox/CommentDilogBox";
+import { Post } from "../../RecoilState/Post/Post";
 
-export default function UserSidePost() {
+export default function ClientSidePost() {
     let matchedUserDetails = JSON.parse(localStorage.getItem("matchedUser"))
-    const UserPostData = useRecoilValue(UserPost);
+    let allPost = JSON.parse(localStorage.getItem("allPost")) || []
+    // let readUserSidePost = useRecoilValue(UserPost)  //object //clcked
+    let fectchOtherUserPostL = JSON.parse(localStorage.getItem("otherUserPostObj"))
+    console.log(allPost , "ClientSidePOst")
+    
+   const postData = allPost.filter(x=> x.UserName === fectchOtherUserPostL.UserName )
+
+    const setUserSidePost = useSetRecoilState(UserPost);
     const navigate = useNavigate()
     const [threadData ,setThreadData] = useRecoilState(ThreadofMinePOst)
     
-    function redirectToProfile() {
+    function redirectToProfile(element) {
         // alert("i am clik")
-        navigate(`/profile/${matchedUserDetails.Name}`)
+        
+        console.log(element,"m from user side post")
+        if(element.UserName === matchedUserDetails.UserName){
+          navigate(`/profile/${element.Name}`)
+
+        }else{
+          setUserSidePost(element)
+          navigate(`/${element.Name}`)
+        }
+
       }
 
       function redirectToStatus(element) {
@@ -34,9 +51,9 @@ export default function UserSidePost() {
         <>
         <div>
         {
-            UserPostData.map(element=> 
-                <div className={style.postContainer} key={element.name}>
-                <span onClick={()=>redirectToProfile()}>
+            postData.map(element=> 
+                <div  className={style.postContainer} key={element.id}>
+                <span onClick={()=>redirectToProfile(element)}>
               
             <img
               className={style.userProfle}
@@ -46,7 +63,7 @@ export default function UserSidePost() {
             </span>
             <div className={style.postSubContainer}>
               <div>
-                <span className={style.postUserName}>{ matchedUserDetails.Name}</span>
+                <span className={style.postUserName}>{ element.Name}</span>
                 <span className={style.postHandleName}>
                   {element.handlerName}
                 </span>

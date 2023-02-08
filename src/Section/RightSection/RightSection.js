@@ -1,5 +1,5 @@
 import React from 'react'
-import Follow from '../../Component/Follow/Follow'
+import Follow from '../../Component/Right Section Follow/Follow'
 import Footerr from '../../Component/RightFooter/RightFooter'
 import SearchBar from '../../Component/SearchBar/SearchBar'
 import Trends from '../../Component/Trends/Trends'

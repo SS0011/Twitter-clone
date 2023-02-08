@@ -10,7 +10,7 @@ import { FaTwitter } from "react-icons/fa";
 import { CgMoreO } from "react-icons/cg";
 import style from "./LeftSection.module.css";
 import TweetButton from "../../Component/TweetButton/TweetButton";
-import UserLogOutPopOver from "../../Component/UserLogOutPopOver/UserLogOutPopOver";
+import LogOutPopOver from "../../Component/Left Section Log-Out Pop/LogOutPopOver";
 import { Link } from "react-router-dom";
 
 export default function LeftSection() {
@@ -57,14 +57,14 @@ let matchedUserData =JSON.parse(localStorage.getItem("matchedUser"))
        <Link to='/home' ><FaTwitter className={style.twitterIcon} /></Link>
 
         {buttonList.map((element) => (
-          <div className={style.textWrapper}>
+          <div key={element.text} className={style.textWrapper}>
             <span> {element.icon}</span>
             <span className={style.text}>{element.text}</span>
           </div>
         ))}
         <TweetButton buttonText="Tweet" />
         <div className={style.popover}>
-        <UserLogOutPopOver />
+        <LogOutPopOver />
         </div>
       </div>
 
