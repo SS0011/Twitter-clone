@@ -60,3 +60,36 @@
 }
 
 }
+
+@media screen and (max-width : 700px) {
+    .userProfle{
+        width: 5rem;
+    }
+    .postContainer{
+        display: flex;
+    gap: 1rem;
+    border: 1px solid;
+    width: 38rem;
+    padding-left: 1rem;
+    padding: 1rem;
+    }
+    .postUserName{
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+    .userTweetContainer{
+        width: 28rem;
+    }
+    .tweetText{
+        font-size: 1.35rem;
+    font-weight: 600;
+    }
+    .iconsWrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .subIconsWrapper{
+        font-size: 2rem;
+    }
+}

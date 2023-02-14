@@ -46,11 +46,11 @@ console.log(filteredCommentsForParticularPost,"m from particulat tweet filter by
   return (
     <>
       <div className={style.main}>
-        <div style={{ border: "0px solid" }}>
+        <div className={style.left} style={{ border: "0px solid" }}>
           <LeftSection />
         </div>
 
-        <div style={{ border: "1px solid  rgb(209, 209, 209)" }}>
+        <div className={style.wrapper} style={{ border: "1px solid  white" }}>
         <div className={style.box}>
         <span  onClick={handleArrow} className={style.arrow}>
           <BsArrowLeft  />
@@ -61,7 +61,7 @@ console.log(filteredCommentsForParticularPost,"m from particulat tweet filter by
     //this is modification of user side post woith css
 }
   
-        <div>
+       
         <div className={style.postContainer} key={particularTweetData.Name}>
        
      {
@@ -85,7 +85,7 @@ console.log(filteredCommentsForParticularPost,"m from particulat tweet filter by
        </div>
        <div className={style.postSubContainer}>
       
-       
+       <div className={style.tweetTextPic}>
        <span className={style.tweetText}>{particularTweetData.tweetText}</span>
        {particularTweetData.tweetPic ?
        <img
@@ -95,7 +95,8 @@ console.log(filteredCommentsForParticularPost,"m from particulat tweet filter by
          width="560rem"
        />
        : ""}
-       <span className={style.iconsWrapper}>
+       </div>
+       <div className={style.iconsWrapper}>
        <span className={style.subIconsWrapper}>
          <BiMessageRounded className={style.icons} />
          <span className={style.iconText}>
@@ -129,11 +130,11 @@ console.log(filteredCommentsForParticularPost,"m from particulat tweet filter by
          </span>
          </span>
          <BsUpload className={style.icons} />
-       </span>
+       </div>
        </div>
      
     
-        </div> 
+       
 
         <div>
         
@@ -213,7 +214,7 @@ console.log(filteredCommentsForParticularPost,"m from particulat tweet filter by
 {
     //right section
 }
-        <div style={{ border: "0px solid" }}>
+        <div className={style.left} style={{ border: "0px solid" }}>
           <RightSection />
         </div>
       </div>

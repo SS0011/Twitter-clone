@@ -70,7 +70,7 @@ export default function MySidePost({filterPost}) {
               </div>
               <div>
               <div onClick={()=>redirectToStatus(element)}>
-              <span>{element.tweetText}</span>
+              <span className={style.tweetText}>{element.tweetText}</span> 
               {element.tweetPic ?
               <img
                 className={style.tweetPic}

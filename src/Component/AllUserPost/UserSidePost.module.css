@@ -1,4 +1,4 @@
-@media screen and (min-width :700px) {
+
     
 
 
@@ -9,7 +9,7 @@
     border: 1px solid  rgba(214, 214, 214, 0.5);
     border-right: 0px solid;
     padding: 1rem 1.5rem;
-    width: min-content;
+    /* width: min-content; */
     cursor:pointer;
 }
 .postContainer:hover{
@@ -26,6 +26,7 @@
     /* padding: 0.1rem ; */
     /* margin:1rem 1rem; */
     /* margin-left: 1rem; */
+    /* width: 100%; */
 }
 .postUserName{
     font-weight: bolder;
@@ -51,6 +52,8 @@
     width: 30rem;
     height: 2rem;
     margin-top: 1rem;
+    /* gap: 3rem */
+
 } 
 .subIconsWrapper{
     display: flex;
@@ -75,7 +78,27 @@
    /* width: fit-content; */
    height: max-content;
     margin-top: 0.4rem;
+    width: 100%;
+    /* border: 1px solid; */
 
 }
 
+@media screen and (max-width : 700px) {
+    .userProfle{
+        width: 3rem;
+    }
+    .postUserName{
+        font-size: 1.4rem;
+    }
+    .postHandleName{
+        font-size: 1.2rem;
+    }
+    .tweetText{
+        font-size: 1.4rem;
+    }
+    .postSubContainer{
+        /* margin-top: 3rem; */
+     
+    }
+    
 }

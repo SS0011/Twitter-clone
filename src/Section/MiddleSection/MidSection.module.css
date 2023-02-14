@@ -1,9 +1,12 @@
-@media screen and (min-width : 700px) {
-    
+
 .main{
- flex: 1.1;
+ /* flex: 1.1; */
  border: 1px solid rgb(214, 213, 213);
  margin-left: 25.08rem;
+ width: 36rem;
+}
+.mobilePic{
+    display: none;
 }
 .subMain{
     background-color: rgb(255, 255, 255 ,0.899);
@@ -84,4 +87,58 @@
     color: rgb(255, 3, 3);
     font-size: 1.1rem;
 }
+.mobileTweet{
+    display: none;
 }
+.blur{
+    background-color: rgba(227, 224, 224, 0.3);
+    filter: blur(2px);
+}
+@media screen and (max-width: 700px ) {
+    .main{
+        margin-left: 0px;
+    }
+    .subMain{
+        border: none;
+    }
+    .head{
+        display: none;
+    }
+    .mobilePic{
+        display: unset;
+        width: 3rem;
+        padding-left: 1.5rem;
+    }
+    .wrapper{
+        height: 4rem;
+        padding-top: 1rem;
+    }
+    .mobileTweet{
+        height: 12vh;
+    display: block;
+    position: fixed;
+    top: 40rem;
+    left: 23rem;
+    background-color: brown;
+    width: 10rem;
+    border: 1px solid;
+    }
+    .forYou{
+        font-size: 1.5rem;
+       
+    }
+    .subMain{height: 22vh;}
+}
+
+/* @media screen and ((min-width: 360px) and (max-width: 768px)){
+    .mobileTweet{
+        height: 12vh;
+    display: block;
+    position: fixed;
+    top: 54rem;
+    left: 23rem;
+    background-color: brown;
+    width: 10rem;
+    border: 1px solid;
+    }
+}  */

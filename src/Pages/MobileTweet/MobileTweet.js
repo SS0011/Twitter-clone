@@ -1,20 +1,20 @@
-import { RxAvatar } from "react-icons/rx";
-import { MdOutlinePoll } from "react-icons/md";
-import { TfiLocationPin } from "react-icons/tfi";
-import { TbCalendarStats } from "react-icons/tb";
-import { TfiGallery } from "react-icons/tfi";
+import { useRef, useState } from "react";
 import { AiOutlineFileGif } from "react-icons/ai";
+import { BsArrowLeft } from "react-icons/bs";
 import { IoEarthSharp } from "react-icons/io5";
+import { MdOutlinePoll } from "react-icons/md";
+import { RxAvatar } from "react-icons/rx";
+import { TbCalendarStats } from "react-icons/tb";
+import { TfiGallery, TfiLocationPin } from "react-icons/tfi";
+import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import CustomButton from "../../Atom/CustomButton/CustomButton";
 import TextArea from "../../Atom/TextArea/TextArea";
-import style from "./MidTweetBox.module.css";
-import { useRef, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { UserPost } from "../../RecoilState/myTweetPost/UserPost";
+import MiddleSecTweetBox from "../../Component/Middle Sec TweetBox/MiddleSecTweetBox";
 import { Post } from "../../RecoilState/Post/Post";
-
-export default function MiddleSecTweetBox(prop) {
-  let matchedUserDetails = JSON.parse(localStorage.getItem("matchedUser"))
+import style from './MobileTweet.module.css'
+export default function MobileTweet(){
+    let matchedUserDetails = JSON.parse(localStorage.getItem("matchedUser"))
   const [tweet, setTweet] = useState("");
   const [show, setShow] = useState(false );
   const [image, setImage] = useState(null);
@@ -50,31 +50,31 @@ export default function MiddleSecTweetBox(prop) {
     // setTweetPost([tweetText,...tweetPost])
     setTweet("")
     setImage("")
-    prop.setOpen(false)
+
   }
 
   function handleShow() {
     setShow(true);
   }
 
- 
- 
-  return (
-    <>
-   
-      <div className={ style.inputContainer  } >
+    return(
+        <>
+        <div className={style.header}>
+        <Link to='/home'>
+        <BsArrowLeft  />
+        </Link>
+        <CustomButton onClick={handleTweetPost} className={style.tweetPushbtn} buttonText="Tweet" />
+        </div>
+        <div className={ style.inputContainer  } >
         <div onClick={handleShow} className={style.subContainer}>
           <RxAvatar className={style.avatar} />
           <div className={style.input}>
-            {prop.true ||show ? (
+          
               <CustomButton
                 className={style.evryOnebtn}
                 buttonText="Everyone"
-                icon2={<sup>v</sup>}
-              />
-            ) : (
-              ""
-            )}
+                icon2={<sup>v</sup>}/>
+           
             <TextArea
               placeholder="What's Happening?"
               value={tweet}
@@ -87,15 +87,12 @@ export default function MiddleSecTweetBox(prop) {
         <img className={style.inputBoxImage} src={image} alt="uploadImage" width="200px" /> : ""
         }
 
-        {prop.true ||show ? (
+
           <span className={style.evryOnebtnEartch}>
             <IoEarthSharp />
             Everyone can reply
           </span>
-        ) : (
-          ""
-        )}
-
+      
         <div className={style.iconBtnWrapper}>
           <div className={style.iconBtn}>
             <TfiGallery  onClick={handleImage} className={style.iconss} />
@@ -105,21 +102,10 @@ export default function MiddleSecTweetBox(prop) {
             <TbCalendarStats className={style.iconss} />
             <TfiLocationPin className={style.iconss} />
           </div>
-          <CustomButton onClick={handleTweetPost} className={style.tweetPushbtn} buttonText="Tweet" />
+       
         </div>
 
-        {show ? (
-          <div className={style.showMore}>
-            <CustomButton
-           
-              className={style.showMoreBtn}
-              buttonText="Show More Tweets"
-            />
-          </div>
-        ) : (
-          ""
-        )}
       </div>
-    </>
-  );
+        </>
+    )
 }

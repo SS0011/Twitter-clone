@@ -9,6 +9,7 @@ import UserSidePost from "../../Component/AllUserPost/AllUserPost";
 import { useRecoilValue } from "recoil";
 import { UserPost } from "../../RecoilState/myTweetPost/UserPost";
 import MySidePost from "../../Component/My Side Post/MySidePost";
+import HomeMobileFooter from "../../Component/HomeMobileFooter/HomeMobileFooter";
 
 export default function ProfilePage() {
   let matchedUserDetails = JSON.parse(localStorage.getItem("matchedUser"));
@@ -26,16 +27,16 @@ export default function ProfilePage() {
   return (
     <>
       <div className={Style.main}>
-        <div style={{ border: "0px solid" }}>
-          <LeftSection />
-        </div>
+      <div className={Style.left} style={{ border: "0px solid" }}>
+      <LeftSection />
+    </div>
 
-        <div style={{ border: "1px solid  rgb(209, 209, 209)" }}>
+        <div className={Style.wrapper} style={{ border: "1px solid  white" }}>
           <div className={Style.box}>
           <span  onClick={handleArrow} className={Style.arrow}>
             <BsArrowLeft  />
             </span>
-            <h3>{matchedUserDetails.Name}</h3>
+            <h3 className={Style.NameHead}>{matchedUserDetails.Name}</h3>
           </div>
           <div className={Style.wallpaper}></div>
           <div className={Style.mainUserData}>
@@ -70,10 +71,13 @@ export default function ProfilePage() {
           <MySidePost  />
           : ""}
         </div>
+        <div className={Style.mobileFooter}>
+          <HomeMobileFooter />
+          </div>
 
-        <div style={{ border: "0px solid" }}>
-          <RightSection />
-        </div>
+        <div className={Style.right} style={{ border: "0px solid" }}>
+        <RightSection />
+      </div>
       </div>
     </>
   );

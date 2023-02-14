@@ -19,6 +19,9 @@ import { nameHelper } from "../../Helper/nameHelper";
 import { useRecoilState } from "recoil";
 import { LoginState } from "../../RecoilState/LoginState/LoginState";
 import { yearArray, monthArray, dateArray } from "../../Fixtures/DOB/dateBirth";
+
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from "styled-components";
 export default function SignUp() {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
@@ -38,6 +41,10 @@ export default function SignUp() {
   const [allUserDetails, setAllUserDetails] = useState([]);
   const[islogin ,setIsLogin] =useRecoilState(LoginState)
   const navigate = useNavigate()
+  // const theme = useTheme();
+  // const showText = useMediaQuery(theme.breakpoints.up('sm'));
+  const theme = useTheme();
+  // const fullScreen = useMediaQuery(theme.breakpoints.up('sm'));
 
   useEffect(() => {
     if (localStorage.getItem("UsersDetails")) {
@@ -129,15 +136,14 @@ console.log(alreadyRegister, "i am finded data which is already in local storage
     }
   }
 }
+
+
   return (
-    <div>
-      <Dialog
-        PaperProps={{
-          style: {
-            borderRadius: 20,
-          },
-        }}
-        open={true}
+    <div className={Style.DialogWrapper}>
+    
+      <div className={Style.Dialog}
+      // fullScreen={fullScreen}
+        
       >
         <div className={Style.container}>
           <TwitterIcon
@@ -208,12 +214,14 @@ console.log(alreadyRegister, "i am finded data which is already in local storage
                     {password ? (
                       showing ? (
                         <AiOutlineEye
+                        className={Style.eye}
                           onClick={passwordShow}
                           style={{ fontSize: "1.5rem" }}
                         />
                       ) : (
                         <>
                           <AiOutlineEyeInvisible
+                          className={Style.eye}
                             onClick={passwordShow}
                             style={{ fontSize: "1.5rem" }}
                           />
@@ -278,9 +286,9 @@ console.log(alreadyRegister, "i am finded data which is already in local storage
                 buttonText="Sign in with Apple"
                 icon={<BsApple />}
               />
-              <span>
-                ________________________<sub className={Style.or}> or </sub>
-                _______________________
+              <span >
+                ______<span className={Style.orLine}>______________</span>____<sub className={Style.or}> or </sub>
+                ______<span className={Style.orLine}>____________</span>_____
               </span>
 
               <CustomButton
@@ -308,14 +316,15 @@ console.log(alreadyRegister, "i am finded data which is already in local storage
               </span>
             </>
           )}
-          <p>
+          <p className={Style.footer}>
             Have an account already?{" "}
             <Link className={Style.link} to="/login">
               Log in{" "}
             </Link>
           </p>
         </div>
-      </Dialog>
+      </div>
+          
     </div>
   );
 }

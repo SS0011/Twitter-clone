@@ -68,9 +68,9 @@ export default function ClientSidePost() {
                   {element.handlerName}
                 </span>
               </div>
-              <div>
+              <div className={style.userTweetContainer}>
               <div onClick={()=>redirectToStatus(element)}>
-              <span>{element.tweetText}</span>
+              <span className={style.tweetText}>{element.tweetText}</span>
               {element.tweetPic ?
               <img
                 className={style.tweetPic}
@@ -82,7 +82,7 @@ export default function ClientSidePost() {
               </div>
               <span className={style.iconsWrapper}>
               <span className={style.subIconsWrapper}>
-              <span>
+              <span className={style.subIconsWrapper}>
                 
                 <CommentDilogBox/>
                 </span>

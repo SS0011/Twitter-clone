@@ -86,14 +86,8 @@ export default function LogIn() {
     }
   }
   return (
-    <div>
-      <Dialog
-        PaperProps={{
-          style: {
-            borderRadius: 20,
-          },
-        }}
-        open={true}
+    <div  className={Style.DialogWrapper} >
+      <div className={Style.Dialog} 
       >
         <div className={Style.container}>
           <TwitterIcon
@@ -123,11 +117,13 @@ export default function LogIn() {
                     {password ? (
                       showing ? (
                         <AiOutlineEye
+                        className={Style.eye}
                           onClick={passwordShow}
                           style={{ fontSize: "1.5rem" }}
                         />
                       ) : (
                         <AiOutlineEyeInvisible
+                        className={Style.eye}
                           onClick={passwordShow}
                           style={{ fontSize: "1.5rem" }}
                         />
@@ -148,6 +144,7 @@ export default function LogIn() {
             </>
           ) : (
             <>
+            
               <h1 className={Style.heading}>Sign in to Twitter</h1>
               <CustomButton
                 className={Style.btn}
@@ -159,9 +156,9 @@ export default function LogIn() {
                 buttonText="Sign in with Apple"
                 icon={<BsApple />}
               />
-              <span>
-                ________________________<sub className={Style.or}> or </sub>
-                _______________________
+              <span >
+                ______<span className={Style.orLine}>______________</span>____<sub className={Style.or}> or </sub>
+                ______<span className={Style.orLine}>____________</span>_____
               </span>
               <CustomInput
                 value={mixed}
@@ -188,7 +185,7 @@ export default function LogIn() {
             </Link>
           </p>
         </div>
-      </Dialog>
+      </div>
     </div>
   );
 }

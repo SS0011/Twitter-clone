@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import LogIn from "../Component/Log-In/LogIn";
 import Home from "../Pages/Home/Home";
 import LoginPage from "../Pages/LoginPage/LoginPage";
+import MobileTweet from "../Pages/MobileTweet/MobileTweet";
 import OtherProfilePage from "../Pages/OtherProfilePage/OtherProfilePage";
 import ParticularTweet from "../Pages/Particular Tweet/ParticularTweet";
 import ProfilePage from "../Pages/ProfilePage/ProfilePage";
@@ -19,6 +20,7 @@ export default function Routing() {
       <Route path="/:name" element={<OtherProfilePage />} />
       
        <Route path="/status" element={<ParticularTweet />} />
+       <Route path="/compose/tweet" element={<MobileTweet />} />
        {
         // <Route path="/mystatus" element={<MystatusPage /> }  />
      }

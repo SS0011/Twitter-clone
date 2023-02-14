@@ -1,5 +1,8 @@
-@media screen and (min-width: 700px) {
+.mainBox{
+  background-color: #ff0000;
+}
     .container {
+      /* border: 1px solid; */
       display: flex;
       flex-direction: column;
       justify-content: n;
@@ -184,5 +187,114 @@
         font-size: 0.8rem;
         color: red;
     }
-  }
+    .DialogWrapper{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(13, 13, 13, 0.5);
+      height: 100vh;
+      
+    }
+    .Dialog{
+      border: 1px solid;
+      border-radius: 30px;
+      margin-top: 0.5rem;
+      background-color: white;
+      box-shadow: 0 0 8px 8px  rgba(92, 92, 92, 0.8); 
+     
+      
   
+    }
+    
+  
+
+
+  /* Mobile CSS */
+
+  @media screen and (max-width : 699px) {
+    .container{
+      /* background-color: #00acee; */
+      width: 18rem;
+      /* border: 1px solid; */
+      /* height: 80vh; */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      /* margin-top: 1.5rem; */
+    }
+    .orLine{
+      display: none;
+    }
+    .termsCondition{
+      width: 16rem;
+    }
+    .btnLogin{
+      width: 13rem !important;
+      height: 2.2rem;
+       border-radius: 20px;
+       margin-left: 2.5rem;
+    }
+    .btn{
+      width: 13rem !important;
+      height: 2.2rem;
+       border-radius: 20px;
+       /* margin-left: 2.5rem; */
+    }
+    .inputUser{
+      width: 15rem !important;
+      height: 2.5rem;
+    } 
+    .select{
+      width: 4rem;
+    }
+    .heading{
+      font-size: 1.3rem;
+    }
+    .inputUserName{
+      width: 15rem !important;
+        height: 2.5rem;
+        /* margin-left: 4rem; */
+        font-size: 0.8rem;
+    }
+    .btnLoginDisable{
+      width: 13rem !important;
+      height: 1.2rem;
+      margin-left: 2.5rem;
+    }
+    .maindobText{
+      margin-left: 4rem;
+      font-size: 1rem;
+    }
+    .dobText{
+      width: 17rem;
+      margin-left: 4rem;
+      font-size: 0.7rem;
+    }
+    .mainNextContainer{
+      height: 73vh;
+     }
+    .nextContainer{
+      /* margin-left: 1rem; */
+      align-items: center;
+      width: 18rem;
+    }
+    .ForgotText{
+      /* width: 10rem; */
+      margin-left: -12rem;
+    }
+    .footer{
+      margin-top: -0.25rem;
+    }
+    .eye{
+      display: none;
+    }
+    .DialogWrapper{
+      background-color: white;
+    }
+    .Dialog{
+    box-shadow: none;
+    border: none;
+    }
+    
+  }

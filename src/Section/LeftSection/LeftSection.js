@@ -13,7 +13,7 @@ import TweetButton from "../../Component/TweetButton/TweetButton";
 import LogOutPopOver from "../../Component/Left Section Log-Out Pop/LogOutPopOver";
 import { Link } from "react-router-dom";
 
-export default function LeftSection() {
+export default function LeftSection({className}) {
 let matchedUserData =JSON.parse(localStorage.getItem("matchedUser"))
   const buttonList = [
     {
